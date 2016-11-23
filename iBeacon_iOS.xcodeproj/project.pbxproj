@@ -13,6 +13,9 @@
 		E235139F1DCE25450002A25B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E235139D1DCE25450002A25B /* Main.storyboard */; };
 		E23513A11DCE25460002A25B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E23513A01DCE25460002A25B /* Assets.xcassets */; };
 		E23513A41DCE25460002A25B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E23513A21DCE25460002A25B /* LaunchScreen.storyboard */; };
+		E25E10C71DE5E66500228C5F /* ChooseFloorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E10C61DE5E66500228C5F /* ChooseFloorViewController.swift */; };
+		E25E10C91DE5E88300228C5F /* FloorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E10C81DE5E88300228C5F /* FloorTableViewCell.swift */; };
+		E25E10CB1DE5F5FC00228C5F /* ParserAndBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E10CA1DE5F5FC00228C5F /* ParserAndBuilder.swift */; };
 		E27A4D2F1DE32F0700D97B19 /* level6.png in Resources */ = {isa = PBXBuildFile; fileRef = E27A4D2B1DE32F0700D97B19 /* level6.png */; };
 		E27A4D301DE32F0700D97B19 /* level7.png in Resources */ = {isa = PBXBuildFile; fileRef = E27A4D2C1DE32F0700D97B19 /* level7.png */; };
 		E27A4D311DE32F0700D97B19 /* level8.png in Resources */ = {isa = PBXBuildFile; fileRef = E27A4D2D1DE32F0700D97B19 /* level8.png */; };
@@ -43,6 +46,9 @@
 		E23513A01DCE25460002A25B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E23513A31DCE25460002A25B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E23513A51DCE25460002A25B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E25E10C61DE5E66500228C5F /* ChooseFloorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseFloorViewController.swift; sourceTree = "<group>"; };
+		E25E10C81DE5E88300228C5F /* FloorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorTableViewCell.swift; sourceTree = "<group>"; };
+		E25E10CA1DE5F5FC00228C5F /* ParserAndBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserAndBuilder.swift; sourceTree = "<group>"; };
 		E27A4D2B1DE32F0700D97B19 /* level6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level6.png; path = ../../../Downloads/maps/uploadedImages/img/strogino/level6.png; sourceTree = "<group>"; };
 		E27A4D2C1DE32F0700D97B19 /* level7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level7.png; path = ../../../Downloads/maps/uploadedImages/img/strogino/level7.png; sourceTree = "<group>"; };
 		E27A4D2D1DE32F0700D97B19 /* level8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level8.png; path = ../../../Downloads/maps/uploadedImages/img/strogino/level8.png; sourceTree = "<group>"; };
@@ -99,10 +105,13 @@
 				E23513AB1DCE26F80002A25B /* tiles */,
 				E23513991DCE25450002A25B /* AppDelegate.swift */,
 				E235139B1DCE25450002A25B /* ViewController.swift */,
+				E25E10CA1DE5F5FC00228C5F /* ParserAndBuilder.swift */,
 				E235139D1DCE25450002A25B /* Main.storyboard */,
 				E23513A01DCE25460002A25B /* Assets.xcassets */,
 				E23513A21DCE25460002A25B /* LaunchScreen.storyboard */,
 				E23513A51DCE25460002A25B /* Info.plist */,
+				E25E10C61DE5E66500228C5F /* ChooseFloorViewController.swift */,
+				E25E10C81DE5E88300228C5F /* FloorTableViewCell.swift */,
 			);
 			path = iBeacon_iOS;
 			sourceTree = "<group>";
@@ -110,15 +119,15 @@
 		E23513AB1DCE26F80002A25B /* tiles */ = {
 			isa = PBXGroup;
 			children = (
-				E27A4D351DE3307C00D97B19 /* level3.png */,
+				E2EB80361DDE0AD100983148 /* level1.png */,
 				E2AA74691DE2122500D9E80C /* level2.png */,
+				E27A4D351DE3307C00D97B19 /* level3.png */,
 				E2AA746A1DE2122500D9E80C /* level4.png */,
 				E2AA746B1DE2122500D9E80C /* level5.png */,
 				E27A4D2B1DE32F0700D97B19 /* level6.png */,
 				E27A4D2C1DE32F0700D97B19 /* level7.png */,
 				E27A4D2D1DE32F0700D97B19 /* level8.png */,
 				E27A4D2E1DE32F0700D97B19 /* level9.png */,
-				E2EB80361DDE0AD100983148 /* level1.png */,
 			);
 			name = tiles;
 			sourceTree = "<group>";
@@ -136,8 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				E2283C8C1DDF8AE500F77E57 /* json1.json */,
-				E27A4D371DE330A300D97B19 /* json3.json */,
 				E2AA74771DE216DE00D9E80C /* json2.json */,
+				E27A4D371DE330A300D97B19 /* json3.json */,
 				E2AA74791DE2175100D9E80C /* json4.json */,
 				E2AA747B1DE2175D00D9E80C /* json5.json */,
 				E2AA747D1DE2176F00D9E80C /* json6.json */,
@@ -241,6 +250,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E25E10CB1DE5F5FC00228C5F /* ParserAndBuilder.swift in Sources */,
+				E25E10C91DE5E88300228C5F /* FloorTableViewCell.swift in Sources */,
+				E25E10C71DE5E66500228C5F /* ChooseFloorViewController.swift in Sources */,
 				E235139C1DCE25450002A25B /* ViewController.swift in Sources */,
 				E235139A1DCE25450002A25B /* AppDelegate.swift in Sources */,
 			);

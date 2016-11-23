@@ -23,130 +23,82 @@ class ViewController: UIViewController, UIScrollViewDelegate{
     
     var floorNumber = 0
     
-    var arrayOfNextFloorImages = [UIImage]()
+    let maxFloor = 8
+    let minFloor = 0
+    
+    var floorTitle = ""
+    
+    var arrayOfFloorImages = [UIImage]()
     
     override func viewDidLoad() {
+    
         super.viewDidLoad()
         scrollView.delegate = self
         
+        for _ in minFloor...maxFloor {
+            arrayOfFloorImages.append(UIImage(named: "level1")!)
+        }
         
-        barButtonDown.isEnabled = false
-        barButtonUp.isEnabled = false
+        self.title = floorTitle
 
         scrollView.minimumZoomScale = 1.0
         scrollView.zoomScale = 1.0
         scrollView.maximumZoomScale = 6.0
         
-        floorNumber = 1
+        //floorNumber = 0
+        if floorNumber == minFloor {
+            barButtonDown.isEnabled = false
+            
+        }
+        imageView.image = arrayOfFloorImages[floorNumber]
         //startNewMap(floorNumber: floorNumber)
-        imageView.image = createFloorMap(floorNumber: floorNumber)
-        //arrayOfNextFloorImages = loadMassiveOfFloors()
+        //loadMassiveOfFloors()
         
     }
     
-    func createFloorMap(floorNumber: Int) -> UIImage? {
-        if let beginImageNextFloor = UIImage(named: "level\(floorNumber)") {
-            let dictionaryCoordNextFloor = jsonToString(jsonName: "json\(floorNumber)")
-            loadNextFloorParallel(floorNumber: floorNumber)
-            return textAllToImage(image: beginImageNextFloor, dictionaryCoord: dictionaryCoordNextFloor)
-        }
-        return nil
-    }
     
     
     
     
     
     func createFloorMapForAsync(floorNumber: Int) -> UIImage? {
-        if let beginImageNextFloor = UIImage(named: "level\(floorNumber)") {
-            let dictionaryCoordNextFloor = jsonToString(jsonName: "json\(floorNumber)")
+        if let beginImageNextFloor = UIImage(named: "level\(floorNumber + 1)") {
+            let dictionaryCoordNextFloor = jsonToString(jsonName: "json\(floorNumber + 1)")
             return textAllToImage(image: beginImageNextFloor, dictionaryCoord: dictionaryCoordNextFloor)
         }
         return nil
     }
+
     
-    
-    func loadNextFloorParallel(floorNumber: Int) {
-        arrayOfNextFloorImages.removeAll()
-        var flagOfFinish = 0
-        let queue = DispatchQueue(label: "com.miem.hse.iBeacon", qos: .background, target: nil)
-        queue.async {
-            if let bufCreatedFloor = self.createFloorMapForAsync(floorNumber: floorNumber + 1) {
-                
-                self.arrayOfNextFloorImages.insert(bufCreatedFloor, at: 0)
-                //self.arrayOfNextFloorImages.append(bufCreatedFloor)
-                print("Queue1")
-                flagOfFinish += 1
-            }
-        }
-        queue.async {
-            if let bufCreatedFloor = self.createFloorMapForAsync(floorNumber: floorNumber - 1) {
-                self.arrayOfNextFloorImages.insert(bufCreatedFloor, at: 1)
-                //self.arrayOfNextFloorImages.append(bufCreatedFloor)
-                print("Queue2")
-                flagOfFinish += 2
-                
-                //self.barButtonUp.isEnabled = true
-                
-            }
-        }
-        queue.async {
-            DispatchQueue.main.async{
-                switch flagOfFinish {
-                case 1:
-                    self.barButtonUp.isEnabled = true
-                case 2:
-                    self.barButtonDown.isEnabled = true
-                case 3:
-                    self.barButtonDown.isEnabled = true
-                    self.barButtonUp.isEnabled = true
-                default:
-                    break
-                }
-            }
-        }
-        
-//        barButtonUp.isEnabled = true
-//        barButtonDown.isEnabled = true
-//        queue.async {
-//            if let bufCreatedFloor = self.createFloorMap(floorNumber: floorNumber - 1) {
-//                self.arrayOfNextFloorImages.append(bufCreatedFloor)
-//                print("Queue2")
-//            }
-//        }
+    func startNewMap(floorNumber: Int) {
+        let beginImage = UIImage(named: "level\(floorNumber+1)")!
+        let dictionaryCoord = jsonToString(jsonName: "json\(floorNumber+1)")
+        imageView.image = textAllToImage(image: beginImage, dictionaryCoord: dictionaryCoord)
     }
-    
-//    func startNewMap(floorNumber: Int) {
-//        let beginImage = UIImage(named: "level\(floorNumber)")!
-//        let dictionaryCoord = jsonToString(jsonName: "json\(floorNumber)")
-//        imageView.image = textAllToImage(image: beginImage, dictionaryCoord: dictionaryCoord)
-//    }
-//
+
     
     @IBAction func barButtonPush(_ sender: UIBarButtonItem) {
-        //print(arrayOfNextFloorImages)
-        barButtonDown.isEnabled = false
-        barButtonUp.isEnabled = false
         switch sender {
         case barButtonUp:
-            floorNumber += 1
-            if floorNumber == 10 {
-                floorNumber = 9
+            barButtonDown.isEnabled = true
+            if floorNumber == maxFloor {
+                barButtonUp.isEnabled = false
+            } else {
+                floorNumber += 1
+                imageView.image = arrayOfFloorImages[floorNumber]
             }
-            //imageView.image = createFloorMap(floorNumber: floorNumber)
-            imageView.image = arrayOfNextFloorImages[0]
-            loadNextFloorParallel(floorNumber: floorNumber)
         case barButtonDown:
-            floorNumber -= 1
-            if floorNumber == 0 {
-                floorNumber = 1
+            barButtonUp.isEnabled = true
+            if floorNumber == minFloor {
+                barButtonDown.isEnabled = false
+            } else {
+                floorNumber -= 1
+                imageView.image = arrayOfFloorImages[floorNumber]
             }
-            imageView.image = arrayOfNextFloorImages[1]
-            loadNextFloorParallel(floorNumber: floorNumber)
-            //imageView.image = createFloorMap(floorNumber: floorNumber)
         default:
             break
         }
+    
         
     }
     
@@ -173,16 +125,6 @@ class ViewController: UIViewController, UIScrollViewDelegate{
         return dictionaryCoord
     }
     
-    func putTextOnMap(dictionaryOfCoord: [String:String], beginMap: UIImage) -> UIImage{
-        var endImage = beginMap
-        for (name,coords) in dictionaryOfCoord {
-            let coordX = coords.components(separatedBy: ":")[0]
-            let coordY = coords.components(separatedBy: ":")[1]
-            let point = CGPoint(x: Int(coordX)!, y: Int(coordY)!)
-            endImage = textToImage(drawText: name as NSString, inImage: endImage, atPoint: point)
-        }
-        return endImage
-    }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
@@ -217,46 +159,23 @@ class ViewController: UIViewController, UIScrollViewDelegate{
         return newImage
     }
     
-    func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
-        let textColor = UIColor.red
-        let textFont = UIFont(name: "Helvetica Bold", size: 40)!
-        
-        let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
-        
-        let textFontAttributes = [
-            NSFontAttributeName: textFont,
-            NSForegroundColorAttributeName: textColor,
-            ] as [String : Any]
-        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
-        
-        
-        
-        let rect = CGRect(origin: point, size: image.size)
-        text.draw(in: rect, withAttributes: textFontAttributes)
-        
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage!
-    }
-    
-    
     //MARK - TEST
     
-    func loadMassiveOfFloors() -> [UIImage] {
-        var arrayOfFloors = [UIImage]()
-        let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test", attributes: .concurrent)
-        for floor in 1...9 {
-            queue.async {
+    func loadMassiveOfFloors() {
+        let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test", qos: .background, attributes: .concurrent )
+        for floor in minFloor...maxFloor {
+            
+            queue.sync {
                 if let createdImage = self.createFloorMapForAsync(floorNumber: floor) {
-                    queue.sync {
-                        arrayOfFloors.insert(createdImage, at: floor - 1)
-                    }
+                    self.arrayOfFloorImages.remove(at: floor)
+                    self.arrayOfFloorImages.insert(createdImage, at: floor)
+                    print("\(floor) finish")
                 }
             }
+            if floor == maxFloor {
+                dismiss(animated: false, completion: nil)
+            }
         }
-        return arrayOfFloors
     }
     
 }

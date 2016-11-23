@@ -10,29 +10,20 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ViewController.swift"
-            timestampString = "501431224.748961"
+            timestampString = "501609703.945876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "175"
             endingLineNumber = "175"
             landmarkName = "ViewController"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iBeacon_iOS/ViewController.swift"
-            timestampString = "501431224.748961"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "jsonToString(jsonName:)"
+=======
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "viewForZooming(in:)"
             landmarkType = "7">
+>>>>>>> Threads
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,12 +33,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ViewController.swift"
-            timestampString = "501431224.748961"
+            timestampString = "501609703.945876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "createFloorMapForAsync(floorNumber:)"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "jsonToString(jsonName:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,13 +49,18 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ViewController.swift"
-            timestampString = "501431224.748961"
+            timestampString = "501609703.945876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "ViewController"
-            landmarkType = "3">
+<<<<<<< HEAD
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "createFloorMapForAsync(floorNumber:)"
+            landmarkType = "7">
+=======
+            startingLineNumber = "186"
+            endingLineNumber = "186">
+>>>>>>> Threads
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -74,12 +70,41 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ViewController.swift"
-            timestampString = "501430814.049321"
+            timestampString = "501609703.945876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+=======
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "loadMassiveOfFloors()"
+            landmarkType = "7">
+>>>>>>> Threads
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iBeacon_iOS/ViewController.swift"
+            timestampString = "501609703.945876"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "65"
             endingLineNumber = "65"
             landmarkName = "createFloorMapForAsync(floorNumber:)"
+=======
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "loadMassiveOfFloors()"
+>>>>>>> Threads
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
