@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ViewController: UIViewController, UIScrollViewDelegate{
+class ViewController: UIViewController, UIScrollViewDelegate, UISearchBarDelegate{
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
 
@@ -23,6 +23,7 @@ class ViewController: UIViewController, UIScrollViewDelegate{
     
     let maxFloor = 8
     let minFloor = 0
+    @IBOutlet weak var navigationBarButtonSearch: UIBarButtonItem!
     
     var floorTitle = ""
     
@@ -50,8 +51,16 @@ class ViewController: UIViewController, UIScrollViewDelegate{
             barButtonUp.isEnabled = false
         }
         imageView.image = arrayOfFloorImages[floorNumber]
+        //createSearchBar()
     }
     
+    
+    func createSearchBar() {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Enter room number..."
+        searchBar.delegate = self
+        self.navigationItem.titleView = searchBar
+    }
 //    
 //    
 //    
@@ -99,6 +108,10 @@ class ViewController: UIViewController, UIScrollViewDelegate{
             } else {
                 imageView.image = arrayOfFloorImages[floorNumber]
             }
+        case navigationBarButtonSearch:
+            let resultController = UITableViewController(style: .plain)
+            let searchController = UISearchController(searchResultsController: resultController)
+            self.present(searchController, animated: true, completion: nil)
         default:
             break
         }

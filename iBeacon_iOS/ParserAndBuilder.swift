@@ -12,13 +12,40 @@ class ParserAndBuilder: NSObject {
     
     func createFloorMapForAsync(floorNumber: Int) -> UIImage? {
         if let beginImageNextFloor = UIImage(named: "level\(floorNumber + 1)") {
-            let dictionaryCoordNextFloor = jsonToString(jsonName: "json\(floorNumber + 1)")
+            let dictionaryCoordNextFloor = jsonToStringCoords(jsonName: "json\(floorNumber + 1)")
             return textAllToImage(image: beginImageNextFloor, dictionaryCoord: dictionaryCoordNextFloor)
         }
         return nil
     }
+    
+    func getNameOfBuildings() -> [String] {
+        var arrayOfBuildingNames = [String]()
+        for floor in 1...9 {
+            arrayOfBuildingNames.append(jsonToStringBuildingName(jsonName: "json\(floor)"))
+        }
+        return arrayOfBuildingNames
+    }
+    
+    func jsonToStringBuildingName(jsonName:String) -> String {
+        let bundle = Bundle(for: type(of: self))
+        var nameForMap = ""
+        if let theURL = bundle.url(forResource: jsonName, withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: theURL)
+                if let parsedData = try? JSONSerialization.jsonObject(with: data as Data, options:.allowFragments){
+                    let dictionaryOfParcedData = parsedData as! NSDictionary
+                    nameForMap = dictionaryOfParcedData["mapLevel"] as! String
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+        }
+        return nameForMap
 
-    func jsonToString(jsonName: String) -> [String:String] {
+    }
+
+    func jsonToStringCoords(jsonName: String) -> [String:String] {
         let bundle = Bundle(for: type(of: self))
         var dictionaryCoord = [String:String]()
         if let theURL = bundle.url(forResource: jsonName, withExtension: "json") {

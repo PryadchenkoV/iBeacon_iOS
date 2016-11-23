@@ -11,11 +11,12 @@ import UIKit
 let kTableViewCellFloor = "tableCellFloor"
 let kSegueFormFloorToMap = "fromFloorToMap"
 
-let arrayOfFloors = ["Floor1","Floor2","Floor3","Floor4","Floor5","Floor6","Floor7","Floor8","Floor9"]
+var arrayOfFloors = [String]()
 
 class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     @IBOutlet weak var tableViewFloor: UITableView!
+    
     
     
     var chosenFloor = 0
@@ -28,6 +29,8 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        arrayOfFloors = parserAndBuilder.getNameOfBuildings()
+        
         for _ in 0..<arrayOfFloors.count {
             arrayOfNextFloorImages.append(UIImage(named: "level1")!)
         }
