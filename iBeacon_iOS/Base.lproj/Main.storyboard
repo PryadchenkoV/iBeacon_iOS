@@ -10,6 +10,63 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Choose Floor-->
+        <scene sceneID="wYl-4c-LOH">
+            <objects>
+                <viewController id="cau-ZJ-SOM" customClass="ChooseFloorViewController" customModule="iBeacon_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UMb-9n-4bn"/>
+                        <viewControllerLayoutGuide type="bottom" id="gt9-In-UWE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eAP-EO-6oY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Il9-Uu-iER">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCellFloor" id="ETl-wI-z8m" customClass="FloorTableViewCell" customModule="iBeacon_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ETl-wI-z8m" id="BqA-Gb-hjA">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Floor 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eY3-3h-4SW">
+                                                    <rect key="frame" x="8" y="0.0" width="359" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="labelFloorName" destination="eY3-3h-4SW" id="c9b-r6-9Dv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Il9-Uu-iER" firstAttribute="top" secondItem="UMb-9n-4bn" secondAttribute="bottom" constant="-64" id="Haa-jz-xcY"/>
+                            <constraint firstAttribute="trailing" secondItem="Il9-Uu-iER" secondAttribute="trailing" id="QKN-Z8-BmL"/>
+                            <constraint firstItem="Il9-Uu-iER" firstAttribute="leading" secondItem="eAP-EO-6oY" secondAttribute="leading" id="cdh-cU-Rhk"/>
+                            <constraint firstItem="gt9-In-UWE" firstAttribute="top" secondItem="Il9-Uu-iER" secondAttribute="bottom" id="jkt-cu-VB5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Choose Floor" id="qwz-RK-YT4"/>
+                    <connections>
+                        <outlet property="tableViewFloor" destination="Il9-Uu-iER" id="AXe-h0-4uJ"/>
+                        <segue destination="WLD-Ww-2XG" kind="show" identifier="fromFloorToMap" id="rd1-Kr-5M5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fyy-YM-pDy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1008.8" y="136.28185907046478"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="7vh-w2-MeR">
             <objects>
@@ -84,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PZC-of-GoV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1140" y="136.28185907046478"/>
+            <point key="canvasLocation" x="1710" y="137"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Whc-xv-9Dl">
@@ -97,7 +154,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="WLD-Ww-2XG" kind="relationship" relationship="rootViewController" id="V8e-ru-R1e"/>
+                        <segue destination="cau-ZJ-SOM" kind="relationship" relationship="rootViewController" id="Rlx-cw-T3q"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ixC-Zh-BFj" userLabel="First Responder" sceneMemberID="firstResponder"/>

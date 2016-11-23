@@ -26,6 +26,8 @@ class ViewController: UIViewController, UIScrollViewDelegate{
     let maxFloor = 8
     let minFloor = 0
     
+    var floorTitle = ""
+    
     var arrayOfNextFloorImages = [UIImage]()
     
     override func viewDidLoad() {
@@ -33,38 +35,26 @@ class ViewController: UIViewController, UIScrollViewDelegate{
         super.viewDidLoad()
         scrollView.delegate = self
         
-    
-        
         for _ in minFloor...maxFloor {
             arrayOfNextFloorImages.append(UIImage(named: "level1")!)
         }
+        
+        self.title = floorTitle
 
         scrollView.minimumZoomScale = 1.0
         scrollView.zoomScale = 1.0
         scrollView.maximumZoomScale = 6.0
         
-        floorNumber = 0
+        //floorNumber = 0
         if floorNumber == minFloor {
             barButtonDown.isEnabled = false
             
         }
         startNewMap(floorNumber: floorNumber)
-
-        //imageView.image = createFloorMap(floorNumber: floorNumber)
         loadMassiveOfFloors()
-        //arrayOfNextFloorImages = loadMassiveOfFloors()
-        print("Exit")
         
     }
     
-    func createFloorMap(floorNumber: Int) -> UIImage? {
-        if let beginImageNextFloor = UIImage(named: "level\(floorNumber+1)") {
-            let dictionaryCoordNextFloor = jsonToString(jsonName: "json\(floorNumber+1)")
-            loadNextFloorParallel(floorNumber: floorNumber)
-            return textAllToImage(image: beginImageNextFloor, dictionaryCoord: dictionaryCoordNextFloor)
-        }
-        return nil
-    }
     
     
     
@@ -77,58 +67,7 @@ class ViewController: UIViewController, UIScrollViewDelegate{
         }
         return nil
     }
-    
-    
-    func loadNextFloorParallel(floorNumber: Int) {
-        arrayOfNextFloorImages.removeAll()
-        var flagOfFinish = 0
-        let queue = DispatchQueue(label: "com.miem.hse.iBeacon", qos: .background, target: nil)
-        
-        queue.async {
-            if let bufCreatedFloor = self.createFloorMapForAsync(floorNumber: floorNumber + 1) {
-                
-                self.arrayOfNextFloorImages.insert(bufCreatedFloor, at: 0)
-                //self.arrayOfNextFloorImages.append(bufCreatedFloor)
-                print("Queue1")
-                flagOfFinish += 1
-            }
-        }
-        queue.async {
-            if let bufCreatedFloor = self.createFloorMapForAsync(floorNumber: floorNumber - 1) {
-                self.arrayOfNextFloorImages.insert(bufCreatedFloor, at: 1)
-                //self.arrayOfNextFloorImages.append(bufCreatedFloor)
-                print("Queue2")
-                flagOfFinish += 2
-                
-                //self.barButtonUp.isEnabled = true
-                
-            }
-        }
-        queue.async {
-            DispatchQueue.main.async{
-                switch flagOfFinish {
-                case 1:
-                    self.barButtonUp.isEnabled = true
-                case 2:
-                    self.barButtonDown.isEnabled = true
-                case 3:
-                    self.barButtonDown.isEnabled = true
-                    self.barButtonUp.isEnabled = true
-                default:
-                    break
-                }
-            }
-        }
-        
-//        barButtonUp.isEnabled = true
-//        barButtonDown.isEnabled = true
-//        queue.async {
-//            if let bufCreatedFloor = self.createFloorMap(floorNumber: floorNumber - 1) {
-//                self.arrayOfNextFloorImages.append(bufCreatedFloor)
-//                print("Queue2")
-//            }
-//        }
-    }
+
     
     func startNewMap(floorNumber: Int) {
         let beginImage = UIImage(named: "level\(floorNumber+1)")!
@@ -138,29 +77,6 @@ class ViewController: UIViewController, UIScrollViewDelegate{
 
     
     @IBAction func barButtonPush(_ sender: UIBarButtonItem) {
-        //print(arrayOfNextFloorImages)
-//        barButtonDown.isEnabled = false
-//        barButtonUp.isEnabled = false
-//        switch sender {
-//        case barButtonUp:
-//            floorNumber += 1
-//            if floorNumber == 10 {
-//                floorNumber = 9
-//            }
-//            //imageView.image = createFloorMap(floorNumber: floorNumber)
-//            imageView.image = arrayOfNextFloorImages[0]
-//            loadNextFloorParallel(floorNumber: floorNumber)
-//        case barButtonDown:
-//            floorNumber -= 1
-//            if floorNumber == 0 {
-//                floorNumber = 1
-//            }
-//            imageView.image = arrayOfNextFloorImages[1]
-//            loadNextFloorParallel(floorNumber: floorNumber)
-//            //imageView.image = createFloorMap(floorNumber: floorNumber)
-//        default:
-//            break
-        //        }
         switch sender {
         case barButtonUp:
             barButtonDown.isEnabled = true
@@ -170,7 +86,6 @@ class ViewController: UIViewController, UIScrollViewDelegate{
                 floorNumber += 1
                 imageView.image = arrayOfNextFloorImages[floorNumber]
             }
-            //loadNextFloorParallel(floorNumber: floorNumber)
         case barButtonDown:
             barButtonUp.isEnabled = true
             if floorNumber == minFloor {
@@ -179,8 +94,6 @@ class ViewController: UIViewController, UIScrollViewDelegate{
                 floorNumber -= 1
                 imageView.image = arrayOfNextFloorImages[floorNumber]
             }
-            //loadNextFloorParallel(floorNumber: floorNumber)
-        //imageView.image = createFloorMap(floorNumber: floorNumber)
         default:
             break
         }
@@ -211,16 +124,6 @@ class ViewController: UIViewController, UIScrollViewDelegate{
         return dictionaryCoord
     }
     
-    func putTextOnMap(dictionaryOfCoord: [String:String], beginMap: UIImage) -> UIImage{
-        var endImage = beginMap
-        for (name,coords) in dictionaryOfCoord {
-            let coordX = coords.components(separatedBy: ":")[0]
-            let coordY = coords.components(separatedBy: ":")[1]
-            let point = CGPoint(x: Int(coordX)!, y: Int(coordY)!)
-            endImage = textToImage(drawText: name as NSString, inImage: endImage, atPoint: point)
-        }
-        return endImage
-    }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
@@ -255,55 +158,14 @@ class ViewController: UIViewController, UIScrollViewDelegate{
         return newImage
     }
     
-    func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
-        let textColor = UIColor.red
-        let textFont = UIFont(name: "Helvetica Bold", size: 40)!
-        
-        let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
-        
-        let textFontAttributes = [
-            NSFontAttributeName: textFont,
-            NSForegroundColorAttributeName: textColor,
-            ] as [String : Any]
-        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
-        
-        
-        
-        let rect = CGRect(origin: point, size: image.size)
-        text.draw(in: rect, withAttributes: textFontAttributes)
-        
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage!
-    }
-    
-    
     //MARK - TEST
     
     func loadMassiveOfFloors() {
-        //var arrayOfFloors = [UIImage]()
-    
         let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test", qos: .background, attributes: .concurrent )
-        queue.sync {
-            DispatchQueue.main.async{
-                let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-                
-                alert.view.tintColor = UIColor.black
-                let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50)) as UIActivityIndicatorView
-                loadingIndicator.hidesWhenStopped = true
-                loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-                loadingIndicator.startAnimating();
-                alert.view.addSubview(loadingIndicator)
-                self.present(alert, animated: true, completion: nil)
-            }
-        }
         for floor in minFloor...maxFloor {
             
             queue.sync {
                 if let createdImage = self.createFloorMapForAsync(floorNumber: floor) {
-                    //self.arrayOfNextFloorImages.append(createdImage)
                     self.arrayOfNextFloorImages.remove(at: floor)
                     self.arrayOfNextFloorImages.insert(createdImage, at: floor)
                     print("\(floor) finish")
@@ -313,7 +175,6 @@ class ViewController: UIViewController, UIScrollViewDelegate{
                 dismiss(animated: false, completion: nil)
             }
         }
-        //arrayOfNextFloorImages = arrayOfFloors
     }
     
 }
