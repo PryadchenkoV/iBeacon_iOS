@@ -11,11 +11,13 @@ import UIKit
 let kTableViewCellFloor = "tableCellFloor"
 let kSegueFormFloorToMap = "fromFloorToMap"
 
+let arrayOfFloors = ["Floor1","Floor2","Floor3","Floor4","Floor5","Floor6","Floor7","Floor8","Floor9"]
+
 class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     @IBOutlet weak var tableViewFloor: UITableView!
     
-    let arrayOfFloors = ["Floor1","Floor2","Floor3","Floor4","Floor5","Floor6","Floor7","Floor8","Floor9"]
+    
     var chosenFloor = 0
     var chosenTitle = ""
     
@@ -60,7 +62,6 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
         if segue.identifier == kSegueFormFloorToMap {
             if let destinantionController = segue.destination as? ViewController {
                 destinantionController.floorNumber = chosenFloor
-                destinantionController.floorTitle = chosenTitle
                 destinantionController.arrayOfFloorImages = arrayOfNextFloorImages
             }
         }

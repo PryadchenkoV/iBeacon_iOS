@@ -110,10 +110,16 @@
                                             <action selector="barButtonPush:" destination="WLD-Ww-2XG" id="P4e-hP-K6i"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem image="Level_Down_100.png" width="56" id="0iD-YL-WHR">
+                                    <barButtonItem image="Level_Down_100.png" width="69" id="0iD-YL-WHR">
                                         <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="barButtonPush:" destination="WLD-Ww-2XG" id="HOQ-gW-EnQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="stop" id="e7A-0C-hrP">
+                                        <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="barButtonPush:" destination="WLD-Ww-2XG" id="gRd-3j-ML1"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -132,6 +138,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="7kj-gv-ZaS"/>
                     <connections>
+                        <outlet property="barButtonCancel" destination="e7A-0C-hrP" id="h1u-gJ-tWq"/>
                         <outlet property="barButtonDown" destination="0iD-YL-WHR" id="PL6-gf-Eqp"/>
                         <outlet property="barButtonUp" destination="LPZ-4F-sb7" id="kH2-s5-JqO"/>
                         <outlet property="imageView" destination="JYE-wD-Ann" id="Ko6-1a-F2a"/>
