@@ -1,0 +1,248 @@
+{
+    "directory": "http://miem-msiea.rhcloud.com/download/image?folder\u003dstrogino\u0026filename\u003dlevel6a_0-5.png",
+    "tilesDir": "http://miem-msiea.rhcloud.com/download/tiles?folder\u003dstrogino\u0026filename\u003dlevel6a/x-y.png",
+    "tilesXcount": 9,
+    "tilesYcount": 6,
+    "mapLevel": "Floor 6",
+    "mapSizeX": 2481,
+    "mapSizeY": 1754,
+    "buildingId": 2,
+    "beacons": [
+                {
+                "id": 112,
+                "title": "S",
+                "description": "Северная лестница. Административный корпус.",
+                "uuid": "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0",
+                "minor": 75,
+                "major": 2,
+                "coordX": 1319,
+                "coordY": 143,
+                "nodeNumber": 459
+                },
+                {
+                "id": 113,
+                "title": "610",
+                "description": "Комната 610",
+                "uuid": "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0",
+                "minor": 76,
+                "major": 2,
+                "coordX": 1178,
+                "coordY": 539,
+                "nodeNumber": 460
+                },
+                {
+                "id": 114,
+                "title": "608",
+                "description": "Языковая аудитория",
+                "uuid": "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0",
+                "minor": 77,
+                "major": 2,
+                "coordX": 1330,
+                "coordY": 534,
+                "nodeNumber": 461
+                },
+                {
+                "id": 116,
+                "title": "E",
+                "description": "Лифт. Административный корпус",
+                "uuid": "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0",
+                "minor": 78,
+                "major": 2,
+                "coordX": 1230,
+                "coordY": 912,
+                "nodeNumber": 462
+                },
+                {
+                "id": 117,
+                "title": "WC",
+                "description": "WC. Административный корпус.",
+                "uuid": "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0",
+                "minor": 79,
+                "major": 2,
+                "coordX": 1581,
+                "coordY": 930,
+                "nodeNumber": 463
+                },
+                {
+                "id": 118,
+                "title": "612",
+                "description": "Компьютерный класс",
+                "uuid": "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0",
+                "minor": 80,
+                "major": 2,
+                "coordX": 1954,
+                "coordY": 935,
+                "nodeNumber": 464
+                },
+                {
+                "id": 119,
+                "title": "S",
+                "description": "Юго-восточная лестница. Административный корпус.",
+                "uuid": "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0",
+                "minor": 81,
+                "major": 2,
+                "coordX": 2037,
+                "coordY": 1487,
+                "nodeNumber": 465
+                },
+                {
+                "id": 120,
+                "title": "613",
+                "description": "Департамент электронной инженерии. Преподавательская",
+                "uuid": "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0",
+                "minor": 82,
+                "major": 2,
+                "coordX": 1827,
+                "coordY": 1485,
+                "nodeNumber": 466
+                },
+                {
+                "id": 121,
+                "title": "614",
+                "description": "Профессорский зал",
+                "uuid": "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0",
+                "minor": 83,
+                "major": 2,
+                "coordX": 1368,
+                "coordY": 1476,
+                "nodeNumber": 467
+                },
+                {
+                "id": 122,
+                "title": "607",
+                "description": "Компьютерный клсс",
+                "uuid": "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0",
+                "minor": 84,
+                "major": 2,
+                "coordX": 670,
+                "coordY": 722,
+                "nodeNumber": 468
+                },
+                {
+                "id": 123,
+                "title": "606",
+                "description": "Компьютерный класс",
+                "uuid": "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0",
+                "minor": 85,
+                "major": 2,
+                "coordX": 692,
+                "coordY": 280,
+                "nodeNumber": 469
+                }
+                ],
+    "nodes": [
+              {
+              "nodeId": 52,
+              "coordX": 971,
+              "coordY": 91,
+              "mapId": 17,
+              "nodeNumber": 470
+              },
+              {
+              "nodeId": 53,
+              "coordX": 1218,
+              "coordY": 309,
+              "mapId": 17,
+              "nodeNumber": 471
+              },
+              {
+              "nodeId": 54,
+              "coordX": 1306,
+              "coordY": 319,
+              "mapId": 17,
+              "nodeNumber": 472
+              },
+              {
+              "nodeId": 55,
+              "coordX": 1581,
+              "coordY": 318,
+              "mapId": 17,
+              "nodeNumber": 473
+              },
+              {
+              "nodeId": 56,
+              "coordX": 1579,
+              "coordY": 105,
+              "mapId": 17,
+              "nodeNumber": 474
+              },
+              {
+              "nodeId": 57,
+              "coordX": 996,
+              "coordY": 592,
+              "mapId": 17,
+              "nodeNumber": 475
+              },
+              {
+              "nodeId": 58,
+              "coordX": 988,
+              "coordY": 313,
+              "mapId": 17,
+              "nodeNumber": 476
+              },
+              {
+              "nodeId": 59,
+              "coordX": 981,
+              "coordY": 851,
+              "mapId": 17,
+              "nodeNumber": 477
+              },
+              {
+              "nodeId": 60,
+              "coordX": 1054,
+              "coordY": 1124,
+              "mapId": 17,
+              "nodeNumber": 478
+              },
+              {
+              "nodeId": 61,
+              "coordX": 1272,
+              "coordY": 1191,
+              "mapId": 17,
+              "nodeNumber": 479
+              },
+              {
+              "nodeId": 62,
+              "coordX": 1578,
+              "coordY": 1181,
+              "mapId": 17,
+              "nodeNumber": 480
+              },
+              {
+              "nodeId": 63,
+              "coordX": 1818,
+              "coordY": 1212,
+              "mapId": 17,
+              "nodeNumber": 481
+              },
+              {
+              "nodeId": 64,
+              "coordX": 1964,
+              "coordY": 1213,
+              "mapId": 17,
+              "nodeNumber": 482
+              },
+              {
+              "nodeId": 65,
+              "coordX": 2072,
+              "coordY": 1226,
+              "mapId": 17,
+              "nodeNumber": 483
+              },
+              {
+              "nodeId": 66,
+              "coordX": 1587,
+              "coordY": 1278,
+              "mapId": 17,
+              "nodeNumber": 484
+              },
+              {
+              "nodeId": 67,
+              "coordX": 885,
+              "coordY": 91,
+              "mapId": 17,
+              "nodeNumber": 485
+              }
+              ],
+    "mapId": 17
+}

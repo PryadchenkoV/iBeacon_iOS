@@ -1,26 +1,113 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="maE-Yi-vyv">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="7vh-w2-MeR">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WLD-Ww-2XG" customClass="ViewController" customModule="iBeacon_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="7zJ-RD-9fF"/>
+                        <viewControllerLayoutGuide type="bottom" id="RtG-ub-QcS"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="E6K-P9-P7M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" directionalLockEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZG4-Ni-lta">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <subviews>
+                                    <imageView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="level1.png" translatesAutoresizingMaskIntoConstraints="NO" id="JYE-wD-Ann">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="530"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="JYE-wD-Ann" secondAttribute="trailing" id="1p2-OP-QXp"/>
+                                    <constraint firstAttribute="bottom" secondItem="JYE-wD-Ann" secondAttribute="bottom" constant="93" id="8EH-qJ-8hq"/>
+                                    <constraint firstItem="JYE-wD-Ann" firstAttribute="width" secondItem="ZG4-Ni-lta" secondAttribute="width" id="LHE-bB-PBK"/>
+                                    <constraint firstItem="JYE-wD-Ann" firstAttribute="height" secondItem="ZG4-Ni-lta" secondAttribute="height" constant="-93" id="Les-zo-71n"/>
+                                    <constraint firstItem="JYE-wD-Ann" firstAttribute="top" secondItem="ZG4-Ni-lta" secondAttribute="top" id="Wu6-Yv-rOW"/>
+                                    <constraint firstItem="JYE-wD-Ann" firstAttribute="centerY" secondItem="ZG4-Ni-lta" secondAttribute="centerY" constant="-46.5" id="aiZ-js-4Oy"/>
+                                    <constraint firstItem="JYE-wD-Ann" firstAttribute="leading" secondItem="ZG4-Ni-lta" secondAttribute="leading" id="qVJ-wP-JmT"/>
+                                    <constraint firstItem="JYE-wD-Ann" firstAttribute="centerX" secondItem="ZG4-Ni-lta" secondAttribute="centerX" id="qrE-Ek-PPw"/>
+                                </constraints>
+                            </scrollView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KzQ-vb-ksC">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="9jP-Nd-F3f"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem image="Level Up-25.png" width="55" id="LPZ-4F-sb7">
+                                        <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="barButtonPush:" destination="WLD-Ww-2XG" id="P4e-hP-K6i"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem image="Level_Down_100.png" width="56" id="0iD-YL-WHR">
+                                        <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="barButtonPush:" destination="WLD-Ww-2XG" id="HOQ-gW-EnQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZG4-Ni-lta" secondAttribute="trailing" constant="-16" id="Gcv-80-7uF"/>
+                            <constraint firstItem="ZG4-Ni-lta" firstAttribute="trailing" secondItem="KzQ-vb-ksC" secondAttribute="trailing" id="HBM-d3-my6"/>
+                            <constraint firstItem="ZG4-Ni-lta" firstAttribute="top" secondItem="7zJ-RD-9fF" secondAttribute="bottom" constant="-64" id="KnO-ho-WZw"/>
+                            <constraint firstItem="ZG4-Ni-lta" firstAttribute="leading" secondItem="KzQ-vb-ksC" secondAttribute="leading" id="TFl-lE-Iai"/>
+                            <constraint firstItem="KzQ-vb-ksC" firstAttribute="top" secondItem="ZG4-Ni-lta" secondAttribute="bottom" id="XMa-Ju-IoW"/>
+                            <constraint firstItem="KzQ-vb-ksC" firstAttribute="bottom" secondItem="RtG-ub-QcS" secondAttribute="top" id="rxC-Vk-Nac"/>
+                            <constraint firstItem="ZG4-Ni-lta" firstAttribute="leading" secondItem="E6K-P9-P7M" secondAttribute="leadingMargin" constant="-16" id="sc6-RV-Oy5"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="7kj-gv-ZaS"/>
+                    <connections>
+                        <outlet property="barButtonDown" destination="0iD-YL-WHR" id="PL6-gf-Eqp"/>
+                        <outlet property="barButtonUp" destination="LPZ-4F-sb7" id="kH2-s5-JqO"/>
+                        <outlet property="imageView" destination="JYE-wD-Ann" id="Ko6-1a-F2a"/>
+                        <outlet property="scrollView" destination="ZG4-Ni-lta" id="nrA-aQ-cYf"/>
+                        <outlet property="tabBarOutlet" destination="KzQ-vb-ksC" id="W8I-cf-p4O"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PZC-of-GoV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1140" y="136.28185907046478"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Whc-xv-9Dl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="maE-Yi-vyv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kni-FS-f0w">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WLD-Ww-2XG" kind="relationship" relationship="rootViewController" id="V8e-ru-R1e"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ixC-Zh-BFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Level Up-25.png" width="25" height="25"/>
+        <image name="Level_Down_100.png" width="25" height="25"/>
+        <image name="level1.png" width="1886" height="2479"/>
+    </resources>
 </document>
