@@ -23,30 +23,43 @@ class ViewController: UIViewController, UIScrollViewDelegate{
     
     var floorNumber = 0
     
+    let maxFloor = 8
+    let minFloor = 0
+    
     var arrayOfNextFloorImages = [UIImage]()
     
     override func viewDidLoad() {
+    
         super.viewDidLoad()
         scrollView.delegate = self
         
+    
         
-        barButtonDown.isEnabled = false
-        barButtonUp.isEnabled = false
+        for _ in minFloor...maxFloor {
+            arrayOfNextFloorImages.append(UIImage(named: "level1")!)
+        }
 
         scrollView.minimumZoomScale = 1.0
         scrollView.zoomScale = 1.0
         scrollView.maximumZoomScale = 6.0
         
-        floorNumber = 1
-        //startNewMap(floorNumber: floorNumber)
-        imageView.image = createFloorMap(floorNumber: floorNumber)
+        floorNumber = 0
+        if floorNumber == minFloor {
+            barButtonDown.isEnabled = false
+            
+        }
+        startNewMap(floorNumber: floorNumber)
+
+        //imageView.image = createFloorMap(floorNumber: floorNumber)
+        loadMassiveOfFloors()
         //arrayOfNextFloorImages = loadMassiveOfFloors()
+        print("Exit")
         
     }
     
     func createFloorMap(floorNumber: Int) -> UIImage? {
-        if let beginImageNextFloor = UIImage(named: "level\(floorNumber)") {
-            let dictionaryCoordNextFloor = jsonToString(jsonName: "json\(floorNumber)")
+        if let beginImageNextFloor = UIImage(named: "level\(floorNumber+1)") {
+            let dictionaryCoordNextFloor = jsonToString(jsonName: "json\(floorNumber+1)")
             loadNextFloorParallel(floorNumber: floorNumber)
             return textAllToImage(image: beginImageNextFloor, dictionaryCoord: dictionaryCoordNextFloor)
         }
@@ -58,8 +71,8 @@ class ViewController: UIViewController, UIScrollViewDelegate{
     
     
     func createFloorMapForAsync(floorNumber: Int) -> UIImage? {
-        if let beginImageNextFloor = UIImage(named: "level\(floorNumber)") {
-            let dictionaryCoordNextFloor = jsonToString(jsonName: "json\(floorNumber)")
+        if let beginImageNextFloor = UIImage(named: "level\(floorNumber + 1)") {
+            let dictionaryCoordNextFloor = jsonToString(jsonName: "json\(floorNumber + 1)")
             return textAllToImage(image: beginImageNextFloor, dictionaryCoord: dictionaryCoordNextFloor)
         }
         return nil
@@ -70,6 +83,7 @@ class ViewController: UIViewController, UIScrollViewDelegate{
         arrayOfNextFloorImages.removeAll()
         var flagOfFinish = 0
         let queue = DispatchQueue(label: "com.miem.hse.iBeacon", qos: .background, target: nil)
+        
         queue.async {
             if let bufCreatedFloor = self.createFloorMapForAsync(floorNumber: floorNumber + 1) {
                 
@@ -116,37 +130,61 @@ class ViewController: UIViewController, UIScrollViewDelegate{
 //        }
     }
     
-//    func startNewMap(floorNumber: Int) {
-//        let beginImage = UIImage(named: "level\(floorNumber)")!
-//        let dictionaryCoord = jsonToString(jsonName: "json\(floorNumber)")
-//        imageView.image = textAllToImage(image: beginImage, dictionaryCoord: dictionaryCoord)
-//    }
-//
+    func startNewMap(floorNumber: Int) {
+        let beginImage = UIImage(named: "level\(floorNumber+1)")!
+        let dictionaryCoord = jsonToString(jsonName: "json\(floorNumber+1)")
+        imageView.image = textAllToImage(image: beginImage, dictionaryCoord: dictionaryCoord)
+    }
+
     
     @IBAction func barButtonPush(_ sender: UIBarButtonItem) {
         //print(arrayOfNextFloorImages)
-        barButtonDown.isEnabled = false
-        barButtonUp.isEnabled = false
+//        barButtonDown.isEnabled = false
+//        barButtonUp.isEnabled = false
+//        switch sender {
+//        case barButtonUp:
+//            floorNumber += 1
+//            if floorNumber == 10 {
+//                floorNumber = 9
+//            }
+//            //imageView.image = createFloorMap(floorNumber: floorNumber)
+//            imageView.image = arrayOfNextFloorImages[0]
+//            loadNextFloorParallel(floorNumber: floorNumber)
+//        case barButtonDown:
+//            floorNumber -= 1
+//            if floorNumber == 0 {
+//                floorNumber = 1
+//            }
+//            imageView.image = arrayOfNextFloorImages[1]
+//            loadNextFloorParallel(floorNumber: floorNumber)
+//            //imageView.image = createFloorMap(floorNumber: floorNumber)
+//        default:
+//            break
+        //        }
         switch sender {
         case barButtonUp:
-            floorNumber += 1
-            if floorNumber == 10 {
-                floorNumber = 9
+            barButtonDown.isEnabled = true
+            if floorNumber == maxFloor {
+                barButtonUp.isEnabled = false
+            } else {
+                floorNumber += 1
+                imageView.image = arrayOfNextFloorImages[floorNumber]
             }
-            //imageView.image = createFloorMap(floorNumber: floorNumber)
-            imageView.image = arrayOfNextFloorImages[0]
-            loadNextFloorParallel(floorNumber: floorNumber)
+            //loadNextFloorParallel(floorNumber: floorNumber)
         case barButtonDown:
-            floorNumber -= 1
-            if floorNumber == 0 {
-                floorNumber = 1
+            barButtonUp.isEnabled = true
+            if floorNumber == minFloor {
+                barButtonDown.isEnabled = false
+            } else {
+                floorNumber -= 1
+                imageView.image = arrayOfNextFloorImages[floorNumber]
             }
-            imageView.image = arrayOfNextFloorImages[1]
-            loadNextFloorParallel(floorNumber: floorNumber)
-            //imageView.image = createFloorMap(floorNumber: floorNumber)
+            //loadNextFloorParallel(floorNumber: floorNumber)
+        //imageView.image = createFloorMap(floorNumber: floorNumber)
         default:
             break
         }
+    
         
     }
     
@@ -244,19 +282,38 @@ class ViewController: UIViewController, UIScrollViewDelegate{
     
     //MARK - TEST
     
-    func loadMassiveOfFloors() -> [UIImage] {
-        var arrayOfFloors = [UIImage]()
-        let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test", attributes: .concurrent)
-        for floor in 1...9 {
-            queue.async {
-                if let createdImage = self.createFloorMapForAsync(floorNumber: floor) {
-                    queue.sync {
-                        arrayOfFloors.insert(createdImage, at: floor - 1)
-                    }
-                }
+    func loadMassiveOfFloors() {
+        //var arrayOfFloors = [UIImage]()
+    
+        let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test", qos: .background, attributes: .concurrent )
+        queue.sync {
+            DispatchQueue.main.async{
+                let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+                
+                alert.view.tintColor = UIColor.black
+                let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50)) as UIActivityIndicatorView
+                loadingIndicator.hidesWhenStopped = true
+                loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+                loadingIndicator.startAnimating();
+                alert.view.addSubview(loadingIndicator)
+                self.present(alert, animated: true, completion: nil)
             }
         }
-        return arrayOfFloors
+        for floor in minFloor...maxFloor {
+            
+            queue.sync {
+                if let createdImage = self.createFloorMapForAsync(floorNumber: floor) {
+                    //self.arrayOfNextFloorImages.append(createdImage)
+                    self.arrayOfNextFloorImages.remove(at: floor)
+                    self.arrayOfNextFloorImages.insert(createdImage, at: floor)
+                    print("\(floor) finish")
+                }
+            }
+            if floor == maxFloor {
+                dismiss(animated: false, completion: nil)
+            }
+        }
+        //arrayOfNextFloorImages = arrayOfFloors
     }
     
 }
