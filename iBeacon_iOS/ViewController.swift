@@ -28,7 +28,7 @@ class ViewController: UIViewController, UIScrollViewDelegate{
     
     var floorTitle = ""
     
-    var arrayOfNextFloorImages = [UIImage]()
+    var arrayOfFloorImages = [UIImage]()
     
     override func viewDidLoad() {
     
@@ -36,7 +36,7 @@ class ViewController: UIViewController, UIScrollViewDelegate{
         scrollView.delegate = self
         
         for _ in minFloor...maxFloor {
-            arrayOfNextFloorImages.append(UIImage(named: "level1")!)
+            arrayOfFloorImages.append(UIImage(named: "level1")!)
         }
         
         self.title = floorTitle
@@ -50,8 +50,9 @@ class ViewController: UIViewController, UIScrollViewDelegate{
             barButtonDown.isEnabled = false
             
         }
-        startNewMap(floorNumber: floorNumber)
-        loadMassiveOfFloors()
+        imageView.image = arrayOfFloorImages[floorNumber]
+        //startNewMap(floorNumber: floorNumber)
+        //loadMassiveOfFloors()
         
     }
     
@@ -84,7 +85,7 @@ class ViewController: UIViewController, UIScrollViewDelegate{
                 barButtonUp.isEnabled = false
             } else {
                 floorNumber += 1
-                imageView.image = arrayOfNextFloorImages[floorNumber]
+                imageView.image = arrayOfFloorImages[floorNumber]
             }
         case barButtonDown:
             barButtonUp.isEnabled = true
@@ -92,7 +93,7 @@ class ViewController: UIViewController, UIScrollViewDelegate{
                 barButtonDown.isEnabled = false
             } else {
                 floorNumber -= 1
-                imageView.image = arrayOfNextFloorImages[floorNumber]
+                imageView.image = arrayOfFloorImages[floorNumber]
             }
         default:
             break
@@ -166,8 +167,8 @@ class ViewController: UIViewController, UIScrollViewDelegate{
             
             queue.sync {
                 if let createdImage = self.createFloorMapForAsync(floorNumber: floor) {
-                    self.arrayOfNextFloorImages.remove(at: floor)
-                    self.arrayOfNextFloorImages.insert(createdImage, at: floor)
+                    self.arrayOfFloorImages.remove(at: floor)
+                    self.arrayOfFloorImages.insert(createdImage, at: floor)
                     print("\(floor) finish")
                 }
             }

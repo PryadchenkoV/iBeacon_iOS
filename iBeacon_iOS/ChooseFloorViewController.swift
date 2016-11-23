@@ -19,9 +19,19 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
     var chosenFloor = 0
     var chosenTitle = ""
     
+    var parserAndBuilder = ParserAndBuilder()
+    
+    var arrayOfNextFloorImages = [UIImage]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        for _ in 0..<arrayOfFloors.count {
+            arrayOfNextFloorImages.append(UIImage(named: "level1")!)
+        }
+        
+        loadMassiveOfFloors(minFloor: 0, maxFloor: 8)
+        
         tableViewFloor.delegate = self
         tableViewFloor.dataSource = self
         
@@ -51,6 +61,7 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
             if let destinantionController = segue.destination as? ViewController {
                 destinantionController.floorNumber = chosenFloor
                 destinantionController.floorTitle = chosenTitle
+                destinantionController.arrayOfFloorImages = arrayOfNextFloorImages
             }
         }
     }
@@ -60,6 +71,22 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
         // Dispose of any resources that can be recreated.
     }
     
+    func loadMassiveOfFloors(minFloor: Int, maxFloor: Int) {
+        let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test", qos: .background, attributes: .concurrent )
+        for floor in minFloor...maxFloor {
+            
+            queue.sync {
+                if let createdImage = parserAndBuilder.createFloorMapForAsync(floorNumber: floor) {
+                    self.arrayOfNextFloorImages.remove(at: floor)
+                    self.arrayOfNextFloorImages.insert(createdImage, at: floor)
+                    print("\(floor) finish")
+                }
+            }
+            if floor == maxFloor {
+                dismiss(animated: false, completion: nil)
+            }
+        }
+    }
     
 
 }
