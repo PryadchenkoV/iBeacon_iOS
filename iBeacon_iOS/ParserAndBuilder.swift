@@ -66,6 +66,30 @@ class ParserAndBuilder: NSObject {
         }
         return dictionaryCoord
     }
+    
+    
+    func jsonToStringMapSize(jsonName: String) -> (mapSizeX:Int,mapSizeY:Int) {
+        let bundle = Bundle(for: type(of: self))
+        var mapSizeX = 0
+        var mapSizeY = 0
+        if let theURL = bundle.url(forResource: jsonName, withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: theURL)
+                if let parsedData = try? JSONSerialization.jsonObject(with: data as Data, options:.allowFragments){
+                    let dictionaryOfParcedData = parsedData as! NSDictionary
+                    mapSizeX = dictionaryOfParcedData["mapSizeX"] as! Int
+                    mapSizeY = dictionaryOfParcedData["mapSizeY"] as! Int
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+        }
+
+        return (mapSizeX:mapSizeX,mapSizeY:mapSizeY)
+    }
+
+    
 
     func textAllToImage(image:UIImage, dictionaryCoord:[String:String]) -> UIImage {
         let textColor = UIColor.red

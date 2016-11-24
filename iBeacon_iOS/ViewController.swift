@@ -8,8 +8,16 @@
 
 import UIKit
 
+extension Dictionary where Value: Equatable {
+    func keysForValue(value: Value) -> [Key] {
+        return flatMap { (key: Key, val: Value) -> Key? in
+            value == val ? key : nil
+        }
+    }
+}
 
-class ViewController: UIViewController, UIScrollViewDelegate, UISearchBarDelegate{
+
+class ViewController: UIViewController, UIScrollViewDelegate, UISearchControllerDelegate, UISearchBarDelegate{
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
 
@@ -27,7 +35,15 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchBarDelegat
     
     var floorTitle = ""
     
+    var dictionaryOfCoords = [String:String]()
+    
+    let parserAndBuilder = ParserAndBuilder()
+    
     var arrayOfFloorImages = [UIImage]()
+    
+    let queue = DispatchQueue(label: "com.miem.hse.iBeacon_ViewController", qos: .background, attributes: .concurrent )
+    
+    var imageSize = (mapSizeX:0,mapSizeY:0)
     
     override func viewDidLoad() {
     
@@ -44,24 +60,55 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchBarDelegat
         scrollView.zoomScale = 1.0
         scrollView.maximumZoomScale = 6.0
         
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onDoubleTap(gestureRecognizer:)))
+        tapRecognizer.numberOfTapsRequired = 2
+        scrollView.addGestureRecognizer(tapRecognizer)
+        
+        checkForBarButtons()
+        imageView.image = arrayOfFloorImages[floorNumber]
+        
+        loadNeedData()
+    }
+    
+    func loadNeedData() {
+        queue.sync {
+            dictionaryOfCoords = parserAndBuilder.jsonToStringCoords(jsonName: "json\(floorNumber + 1)")
+            imageSize = parserAndBuilder.jsonToStringMapSize(jsonName: "json\(floorNumber + 1)")
+        }
+    }
+    
+    func checkForBarButtons() {
         if floorNumber == minFloor {
             barButtonDown.isEnabled = false
             
         } else if floorNumber == maxFloor {
             barButtonUp.isEnabled = false
         }
-        imageView.image = arrayOfFloorImages[floorNumber]
-        //createSearchBar()
     }
     
-    
-    func createSearchBar() {
-        let searchBar = UISearchBar()
-        searchBar.placeholder = "Enter room number..."
-        searchBar.delegate = self
-        self.navigationItem.titleView = searchBar
+    func onDoubleTap(gestureRecognizer: UITapGestureRecognizer) {
+        let scale = min(scrollView.zoomScale * 2, scrollView.maximumZoomScale)
+        
+        if scale != scrollView.zoomScale {
+            let point = gestureRecognizer.location(in: imageView)
+            
+            let scrollSize = scrollView.frame.size
+            let size = CGSize(width: scrollSize.width / scale,
+                              height: scrollSize.height / scale)
+            let origin = CGPoint(x: point.x - size.width / 2,
+                                 y: point.y - size.height / 2)
+            scrollView.zoom(to:CGRect(origin: origin, size: size), animated: true)
+            print(CGRect(origin: origin, size: size))
+        }
     }
-//    
+    
+//    func createSearchBar() {
+//        let searchBar = UISearchBar()
+//        searchBar.placeholder = "Enter room number..."
+//        searchBar.delegate = self
+//        self.navigationItem.titleView = searchBar
+//    }
+//
 //    
 //    
 //    
@@ -80,18 +127,26 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchBarDelegat
 //        let dictionaryCoord = jsonToString(jsonName: "json\(floorNumber+1)")
 //        imageView.image = textAllToImage(image: beginImage, dictionaryCoord: dictionaryCoord)
 //    }
+    
+    func changeFloor()  {
+        imageView.image = arrayOfFloorImages[floorNumber]
+        self.title = arrayOfFloors[floorNumber]
+        scrollView.zoomScale = 1.0
+        checkForBarButtons()
+        loadNeedData()
+    }
 
     
     @IBAction func barButtonPush(_ sender: UIBarButtonItem) {
         switch sender {
         case barButtonUp:
+            
             barButtonDown.isEnabled = true
             if floorNumber == maxFloor {
                 barButtonUp.isEnabled = false
             } else {
                 floorNumber += 1
-                imageView.image = arrayOfFloorImages[floorNumber]
-                self.title = arrayOfFloors[floorNumber]
+                changeFloor()
             }
         case barButtonDown:
             barButtonUp.isEnabled = true
@@ -99,8 +154,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchBarDelegat
                 barButtonDown.isEnabled = false
             } else {
                 floorNumber -= 1
-                imageView.image = arrayOfFloorImages[floorNumber]
-                self.title = arrayOfFloors[floorNumber]
+                changeFloor()
             }
         case barButtonCancel:
             if imageView.image != UIImage(named: "level\(floorNumber + 1)") {
@@ -109,8 +163,11 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchBarDelegat
                 imageView.image = arrayOfFloorImages[floorNumber]
             }
         case navigationBarButtonSearch:
-            let resultController = UITableViewController(style: .plain)
-            let searchController = UISearchController(searchResultsController: resultController)
+            //let resultController = UIViewController()
+            let searchController = UISearchController(searchResultsController: nil)
+            searchController.dimsBackgroundDuringPresentation = false
+            searchController.searchBar.placeholder = "Enter the room..."
+            searchController.searchBar.delegate = self
             self.present(searchController, animated: true, completion: nil)
         default:
             break
@@ -118,6 +175,27 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchBarDelegat
     
         
     }
+
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if !dictionaryOfCoords.keysForValue(value: searchBar.text!).isEmpty {
+            let coordString = dictionaryOfCoords.keysForValue(value: searchBar.text!)[0]
+            var coordX = Double(coordString.components(separatedBy: ":")[0])!
+            var coordY = Double(coordString.components(separatedBy: ":")[1])!
+            let error = scrollView.contentSize
+            coordX *= Double(error.width)/Double(imageSize.mapSizeX) / Double(scrollView.zoomScale + 0.2)
+            coordY *= Double(error.height)/Double(imageSize.mapSizeY) / Double(scrollView.zoomScale + 0.2)
+            
+            print(scrollView.zoomScale)
+            print(error)
+            print(coordString)
+            
+            scrollView.zoom(to: CGRect(x: coordX, y: coordY, width: 100, height: 100), animated: true)
+        }
+    }
+    
+    
+    
     
     
 //    func jsonToString(jsonName: String) -> [String:String] {

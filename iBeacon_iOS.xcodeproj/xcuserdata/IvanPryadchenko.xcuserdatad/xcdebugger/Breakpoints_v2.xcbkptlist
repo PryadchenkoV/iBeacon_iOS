@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ViewController.swift"
-            timestampString = "501623140.12974"
+            timestampString = "501636667.284934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>
