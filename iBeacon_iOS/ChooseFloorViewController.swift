@@ -17,7 +17,9 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
 
     @IBOutlet weak var tableViewFloor: UITableView!
     
+    let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test")
     
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
     
     var chosenFloor = 0
     var chosenTitle = ""
@@ -31,15 +33,18 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
 
         arrayOfFloors = parserAndBuilder.getNameOfBuildings()
         
-        for _ in 0..<arrayOfFloors.count {
-            arrayOfNextFloorImages.append(UIImage(named: "level1")!)
+        for floor in 1...arrayOfFloors.count {
+            arrayOfNextFloorImages.append(UIImage(named: "level\(floor)")!)
         }
         
-        loadMassiveOfFloors(minFloor: 0, maxFloor: 8)
+        //UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        
         
         tableViewFloor.delegate = self
         tableViewFloor.dataSource = self
         
+        loadMassiveOfFloors(minFloor: 0, maxFloor: 8)
         
         // Do any additional setup after loading the view.
     }
@@ -53,6 +58,16 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
         tableViewCell.labelFloorName.text = String(arrayOfFloors[indexPath.row])
         return tableViewCell
     }
+    
+    
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        let lastRowIndex = tableView.numberOfRows(inSection: 0)
+//        if indexPath.row == lastRowIndex - 1 {
+//            loadMassiveOfFloors(minFloor: 0, maxFloor: 8)
+//        }
+//
+//    }
+    
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -76,18 +91,22 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func loadMassiveOfFloors(minFloor: Int, maxFloor: Int) {
-        let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test", qos: .background, attributes: .concurrent )
+        let refreshBarButton: UIBarButtonItem = UIBarButtonItem(customView: activityIndicator)
+        self.navigationItem.rightBarButtonItem = refreshBarButton
+        activityIndicator.startAnimating()
         for floor in minFloor...maxFloor {
             
-            queue.sync {
-                if let createdImage = parserAndBuilder.createFloorMapForAsync(floorNumber: floor) {
+            queue.async {
+                if let createdImage = self.parserAndBuilder.createFloorMapForAsync(floorNumber: floor) {
                     self.arrayOfNextFloorImages.remove(at: floor)
                     self.arrayOfNextFloorImages.insert(createdImage, at: floor)
                     print("\(floor) finish")
+                    if floor == maxFloor {
+                        DispatchQueue.main.async {
+                            self.activityIndicator.stopAnimating()
+                        }
+                    }
                 }
-            }
-            if floor == maxFloor {
-                dismiss(animated: false, completion: nil)
             }
         }
     }

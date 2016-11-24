@@ -182,7 +182,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchController
             let coordString = dictionaryOfCoords.keysForValue(value: searchBar.text!)[0]
             var coordX = Double(coordString.components(separatedBy: ":")[0])!
             var coordY = Double(coordString.components(separatedBy: ":")[1])!
-            let error = scrollView.contentSize
+            let error = scrollView.frame.size
             coordX *= Double(error.width)/Double(imageSize.mapSizeX) / Double(scrollView.zoomScale + 0.2)
             coordY *= Double(error.height)/Double(imageSize.mapSizeY) / Double(scrollView.zoomScale + 0.2)
             
