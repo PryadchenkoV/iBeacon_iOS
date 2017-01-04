@@ -17,8 +17,9 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
 
     @IBOutlet weak var tableViewFloor: UITableView!
     
-    let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test")
     
+    //let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test")
+    let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test")
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
     
     var chosenFloor = 0
@@ -33,7 +34,7 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
 
         arrayOfFloors = parserAndBuilder.getNameOfBuildings()
         
-        for floor in 1...arrayOfFloors.count {
+        for floor in 0...arrayOfFloors.count - 1{
             arrayOfNextFloorImages.append(UIImage(named: "level\(floor)")!)
         }
         
@@ -57,7 +58,7 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let filePath = documentsURL.appendingPathComponent("\(buildingName)_\(0).png").path
         if !FileManager.default.fileExists(atPath: filePath) {
-            createMassiveOfFloors(minFloor: 0, maxFloor: 8)
+            createMassiveOfFloors(minFloor: 0, maxFloor: 9)
         }
         // Do any additional setup after loading the view.
     }
@@ -109,19 +110,19 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
         self.navigationItem.rightBarButtonItem = refreshBarButton
         activityIndicator.startAnimating()
         for floor in minFloor...maxFloor {
-            queue.async {
+            queue.asyncAfter(deadline: .now() + 1.3 * Double(floor), execute: {
                 if let createdImage = self.parserAndBuilder.createFloorMapForAsync(floorNumber: floor) {
                     print("\(floor) finish")
                     do {
                         if let pngImageData = UIImagePNGRepresentation(createdImage) {
                             
-                            let documents
-                            URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
                             let fileURL = documentsURL.appendingPathComponent("\(self.buildingName)_\(floor).png")
                             try pngImageData.write(to: fileURL, options: .atomic)
                             print("\(floor) Saved")
                         }
                     }
+                        
                     catch {
                         
                     }
@@ -131,7 +132,31 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
                         }
                     }
                 }
-            }
+            })
+//            queue.async {
+//    
+//                if let createdImage = self.parserAndBuilder.createFloorMapForAsync(floorNumber: floor) {
+//                    print("\(floor) finish")
+//                    do {
+//                        if let pngImageData = UIImagePNGRepresentation(createdImage) {
+//                            
+//                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//                            let fileURL = documentsURL.appendingPathComponent("\(self.buildingName)_\(floor).png")
+//                            try pngImageData.write(to: fileURL, options: .atomic)
+//                            print("\(floor) Saved")
+//                        }
+//                    }
+//                    
+//                    catch {
+//                        
+//                    }
+////                    if floor == maxFloor {
+////                        DispatchQueue.main.async {
+////                            self.activityIndicator.stopAnimating()
+////                        }
+////                    }
+//                }
+            
         }
     }
     

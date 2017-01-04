@@ -29,7 +29,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchController
     var buildingName = ""
     
     let maxFloor = 8
-    let minFloor = 0
+    let minFloor = -1
     @IBOutlet weak var navigationBarButtonSearch: UIBarButtonItem!
     
     var floorTitle = ""

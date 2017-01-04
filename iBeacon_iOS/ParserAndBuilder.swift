@@ -12,39 +12,22 @@ class ParserAndBuilder: NSObject {
     
     func createFloorMapForAsync(floorNumber: Int) -> UIImage? {
         var dictionaryCoordNextFloor = [String:String]()
-        if let beginImageNextFloor = UIImage(named: "level\(floorNumber + 1)") {
-            dictionaryCoordNextFloor = jsonToStringCoords(jsonName: "json\(floorNumber + 1)")
-            return textAllToImage(image: beginImageNextFloor, dictionaryCoord: dictionaryCoordNextFloor, buildingName: "level\(floorNumber + 1)")
+        if let beginImageNextFloor = UIImage(named: "level\(floorNumber)") {
+            dictionaryCoordNextFloor = jsonToStringCoords(jsonName: "json\(floorNumber)")
+            return textAllToImage(image: beginImageNextFloor, dictionaryCoord: dictionaryCoordNextFloor, buildingName: "level\(floorNumber)")
         }
         return nil
     }
     
     func getNameOfBuildings() -> [String] {
         var arrayOfBuildingNames = [String]()
-        for floor in 1...9 {
+        for floor in 0...9 {
             arrayOfBuildingNames.append(jsonToStringBuildingName(jsonName: "json\(floor)"))
         }
         return arrayOfBuildingNames
     }
     
     
-//    func downloadJsonFromServer() {
-//        let requestURL: NSURL = NSURL(string: "http://www.learnswiftonline.com/Samples/subway.json")!
-//        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
-//        let session = URLSession.shared
-//        let task = session.dataTask(with: urlRequest as URLRequest) {
-//            (data, response, error) -> Void in
-//            
-//            let httpResponse = response as! HTTPURLResponse
-//            let statusCode = httpResponse.statusCode
-//            
-//            if (statusCode == 200) {
-//                print("Everyone is fine, file downloaded successfully.")
-//            }
-//        }
-//        
-//        task.resume()
-//    }
     
     func jsonToStringBuildingName(jsonName:String) -> String {
         let bundle = Bundle(for: type(of: self))

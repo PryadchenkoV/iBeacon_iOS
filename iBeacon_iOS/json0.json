@@ -1,0 +1,188 @@
+{
+    "directory": "http://miem-msiea.rhcloud.com/download/image?folder\u003dstrogino\u0026filename\u003dlevel0a_0-5.png",
+    "tilesDir": "http://miem-msiea.rhcloud.com/download/tiles?folder\u003dstrogino\u0026filename\u003dlevel0a/x-y.png",
+    "tilesXcount": 9,
+    "tilesYcount": 6,
+    "mapLevel": "Floor 0",
+    "mapSizeX": 2481,
+    "mapSizeY": 1754,
+    "buildingId": 2,
+    "beacons": [
+                {
+                "id": 43,
+                "title": "S",
+                "description": "Северная лестница 2.",
+                "uuid": "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0",
+                "minor": 18,
+                "major": 2,
+                "coordX": 1750,
+                "coordY": 664,
+                "nodeNumber": 0
+                },
+                {
+                "id": 50,
+                "title": "E",
+                "description": "Лифт. Административный корпус.",
+                "uuid": "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0",
+                "minor": 20,
+                "major": 2,
+                "coordX": 1610,
+                "coordY": 864,
+                "nodeNumber": 1
+                },
+                {
+                "id": 51,
+                "title": "WC",
+                "description": "WC",
+                "uuid": "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0",
+                "minor": 21,
+                "major": 2,
+                "coordX": 1840,
+                "coordY": 927,
+                "nodeNumber": 2
+                }
+                ],
+    "nodes": [
+              {
+              "nodeId": 177,
+              "coordX": 1819,
+              "coordY": 1064,
+              "mapId": 11,
+              "nodeNumber": 3
+              },
+              {
+              "nodeId": 178,
+              "coordX": 2031,
+              "coordY": 1060,
+              "mapId": 11,
+              "nodeNumber": 4
+              },
+              {
+              "nodeId": 179,
+              "coordX": 2086,
+              "coordY": 1063,
+              "mapId": 11,
+              "nodeNumber": 5
+              },
+              {
+              "nodeId": 180,
+              "coordX": 2090,
+              "coordY": 1181,
+              "mapId": 11,
+              "nodeNumber": 6
+              },
+              {
+              "nodeId": 181,
+              "coordX": 1444,
+              "coordY": 1073,
+              "mapId": 11,
+              "nodeNumber": 7
+              },
+              {
+              "nodeId": 182,
+              "coordX": 1436,
+              "coordY": 1327,
+              "mapId": 11,
+              "nodeNumber": 8
+              },
+              {
+              "nodeId": 183,
+              "coordX": 1283,
+              "coordY": 1229,
+              "mapId": 11,
+              "nodeNumber": 9
+              },
+              {
+              "nodeId": 184,
+              "coordX": 1369,
+              "coordY": 836,
+              "mapId": 11,
+              "nodeNumber": 10
+              },
+              {
+              "nodeId": 185,
+              "coordX": 1384,
+              "coordY": 491,
+              "mapId": 11,
+              "nodeNumber": 11
+              },
+              {
+              "nodeId": 186,
+              "coordX": 1380,
+              "coordY": 369,
+              "mapId": 11,
+              "nodeNumber": 12
+              },
+              {
+              "nodeId": 187,
+              "coordX": 1838,
+              "coordY": 486,
+              "mapId": 11,
+              "nodeNumber": 13
+              },
+              {
+              "nodeId": 188,
+              "coordX": 1838,
+              "coordY": 363,
+              "mapId": 11,
+              "nodeNumber": 14
+              },
+              {
+              "nodeId": 189,
+              "coordX": 1164,
+              "coordY": 371,
+              "mapId": 11,
+              "nodeNumber": 15
+              },
+              {
+              "nodeId": 190,
+              "coordX": 1022,
+              "coordY": 367,
+              "mapId": 11,
+              "nodeNumber": 16
+              },
+              {
+              "nodeId": 191,
+              "coordX": 755,
+              "coordY": 251,
+              "mapId": 11,
+              "nodeNumber": 17
+              },
+              {
+              "nodeId": 192,
+              "coordX": 496,
+              "coordY": 365,
+              "mapId": 11,
+              "nodeNumber": 18
+              },
+              {
+              "nodeId": 193,
+              "coordX": 442,
+              "coordY": 813,
+              "mapId": 11,
+              "nodeNumber": 19
+              },
+              {
+              "nodeId": 194,
+              "coordX": 637,
+              "coordY": 819,
+              "mapId": 11,
+              "nodeNumber": 20
+              },
+              {
+              "nodeId": 195,
+              "coordX": 754,
+              "coordY": 634,
+              "mapId": 11,
+              "nodeNumber": 21
+              },
+              {
+              "nodeId": 196,
+              "coordX": 863,
+              "coordY": 833,
+              "mapId": 11,
+              "nodeNumber": 22
+              }
+              ],
+    "mapId": 11
+}

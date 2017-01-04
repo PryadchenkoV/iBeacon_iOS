@@ -34,6 +34,8 @@
 		E2AA74801DE2178100D9E80C /* json7.json in Resources */ = {isa = PBXBuildFile; fileRef = E2AA747F1DE2178100D9E80C /* json7.json */; };
 		E2AA74821DE2178B00D9E80C /* json8.json in Resources */ = {isa = PBXBuildFile; fileRef = E2AA74811DE2178B00D9E80C /* json8.json */; };
 		E2AA74841DE2179600D9E80C /* json9.json in Resources */ = {isa = PBXBuildFile; fileRef = E2AA74831DE2179600D9E80C /* json9.json */; };
+		E2CE8EDA1E1D68E6008AFF88 /* level0.png in Resources */ = {isa = PBXBuildFile; fileRef = E2CE8ED91E1D68E6008AFF88 /* level0.png */; };
+		E2CE8EDC1E1D690E008AFF88 /* json0.json in Resources */ = {isa = PBXBuildFile; fileRef = E2CE8EDB1E1D690E008AFF88 /* json0.json */; };
 		E2EB80371DDE0AD100983148 /* level1.png in Resources */ = {isa = PBXBuildFile; fileRef = E2EB80361DDE0AD100983148 /* level1.png */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +69,8 @@
 		E2AA747F1DE2178100D9E80C /* json7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json7.json; sourceTree = "<group>"; };
 		E2AA74811DE2178B00D9E80C /* json8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json8.json; sourceTree = "<group>"; };
 		E2AA74831DE2179600D9E80C /* json9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json9.json; sourceTree = "<group>"; };
+		E2CE8ED91E1D68E6008AFF88 /* level0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level0.png; path = ../../../Downloads/maps/uploadedImages/img/strogino/level0.png; sourceTree = "<group>"; };
+		E2CE8EDB1E1D690E008AFF88 /* json0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json0.json; sourceTree = "<group>"; };
 		E2EB80361DDE0AD100983148 /* level1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level1.png; path = ../../../Downloads/maps/uploadedImages/img/strogino/level1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +123,7 @@
 		E23513AB1DCE26F80002A25B /* tiles */ = {
 			isa = PBXGroup;
 			children = (
+				E2CE8ED91E1D68E6008AFF88 /* level0.png */,
 				E2EB80361DDE0AD100983148 /* level1.png */,
 				E2AA74691DE2122500D9E80C /* level2.png */,
 				E269B6F81DE72E2200162C7E /* level3.png */,
@@ -144,6 +149,7 @@
 		E2AA74851DE219B900D9E80C /* json */ = {
 			isa = PBXGroup;
 			children = (
+				E2CE8EDB1E1D690E008AFF88 /* json0.json */,
 				E2283C8C1DDF8AE500F77E57 /* json1.json */,
 				E2AA74771DE216DE00D9E80C /* json2.json */,
 				E27A4D371DE330A300D97B19 /* json3.json */,
@@ -219,11 +225,13 @@
 			files = (
 				E2AA747A1DE2175100D9E80C /* json4.json in Resources */,
 				E2AA74631DE0E2CD00D9E80C /* Level Up-25.png in Resources */,
+				E2CE8EDC1E1D690E008AFF88 /* json0.json in Resources */,
 				E23513A41DCE25460002A25B /* LaunchScreen.storyboard in Resources */,
 				E2AA74711DE2122500D9E80C /* level4.png in Resources */,
 				E2EB80371DDE0AD100983148 /* level1.png in Resources */,
 				E27A4D311DE32F0700D97B19 /* level8.png in Resources */,
 				E2AA74801DE2178100D9E80C /* json7.json in Resources */,
+				E2CE8EDA1E1D68E6008AFF88 /* level0.png in Resources */,
 				E27A4D301DE32F0700D97B19 /* level7.png in Resources */,
 				E269B6F91DE72E2200162C7E /* level3.png in Resources */,
 				E27A4D381DE330A300D97B19 /* json3.json in Resources */,
@@ -383,7 +391,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = MGDFYF2DS8;
 				INFOPLIST_FILE = iBeacon_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "miem.hse.ru.iBeacon-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -397,7 +405,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = MGDFYF2DS8;
 				INFOPLIST_FILE = iBeacon_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "miem.hse.ru.iBeacon-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
