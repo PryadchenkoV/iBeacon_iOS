@@ -22,12 +22,11 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchController
     @IBOutlet weak var imageView: UIImageView!
 
     @IBOutlet weak var tabBarOutlet: UIToolbar!
-    @IBOutlet weak var barButtonUp: UIBarButtonItem!
-    @IBOutlet weak var barButtonDown: UIBarButtonItem!
     
     @IBOutlet weak var barButtonCancel: UIBarButtonItem!
     
     var floorNumber = 0
+    var buildingName = ""
     
     let maxFloor = 8
     let minFloor = 0
@@ -39,7 +38,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchController
     
     let parserAndBuilder = ParserAndBuilder()
     
-    var arrayOfFloorImages = [UIImage]()
+//    var arrayOfFloorImages = [UIImage]()
     
     let queue = DispatchQueue(label: "com.miem.hse.iBeacon_ViewController", qos: .background, attributes: .concurrent )
     
@@ -50,9 +49,9 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchController
         super.viewDidLoad()
         scrollView.delegate = self
         
-        for _ in minFloor...maxFloor {
-            arrayOfFloorImages.append(UIImage(named: "level1")!)
-        }
+//        for _ in minFloor...maxFloor {
+//            arrayOfFloorImages.append(UIImage(named: "level1")!)
+//        }
         
         self.title = arrayOfFloors[floorNumber]
 
@@ -60,14 +59,28 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchController
         scrollView.zoomScale = 1.0
         scrollView.maximumZoomScale = 6.0
         
+        let swipeRightGuesture = UISwipeGestureRecognizer(target: self, action: #selector(onSwipeGuesterRecogniser(guesterRecogiser:)))
+        swipeRightGuesture.direction = .right
+        scrollView.addGestureRecognizer(swipeRightGuesture)
+        
+        let swipeLeftGuesture = UISwipeGestureRecognizer(target: self, action: #selector(onSwipeGuesterRecogniser(guesterRecogiser:)))
+        swipeLeftGuesture.direction = .left
+        scrollView.addGestureRecognizer(swipeLeftGuesture)
+        
+        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onDoubleTap(gestureRecognizer:)))
         tapRecognizer.numberOfTapsRequired = 2
         scrollView.addGestureRecognizer(tapRecognizer)
         
-        checkForBarButtons()
-        imageView.image = arrayOfFloorImages[floorNumber]
         
+        imageView.image = loadFromMemory(buildingName: buildingName, floorNumber: floorNumber)
         loadNeedData()
+    }
+    
+    func loadFromMemory(buildingName:String, floorNumber: Int) -> UIImage{
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent("\(buildingName)_\(floorNumber).png").path
+        return UIImage(contentsOfFile: filePath)!
     }
     
     func loadNeedData() {
@@ -77,14 +90,20 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchController
         }
     }
     
-    func checkForBarButtons() {
-        if floorNumber == minFloor {
-            barButtonDown.isEnabled = false
-            
-        } else if floorNumber == maxFloor {
-            barButtonUp.isEnabled = false
+    func onSwipeGuesterRecogniser(guesterRecogiser:UISwipeGestureRecognizer) {
+        if guesterRecogiser.direction == .right && scrollView.zoomScale == 1.0 {
+            if floorNumber != minFloor {
+                floorNumber -= 1
+                changeFloor()
+            }
+        } else if guesterRecogiser.direction == .left && scrollView.zoomScale == 1.0 {
+            if floorNumber != maxFloor {
+                floorNumber += 1
+                changeFloor()
+            }
         }
     }
+    
     
     func onDoubleTap(gestureRecognizer: UITapGestureRecognizer) {
         let scale = min(scrollView.zoomScale * 2, scrollView.maximumZoomScale)
@@ -102,65 +121,34 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchController
         }
     }
     
-//    func createSearchBar() {
-//        let searchBar = UISearchBar()
-//        searchBar.placeholder = "Enter room number..."
-//        searchBar.delegate = self
-//        self.navigationItem.titleView = searchBar
-//    }
-//
-//    
-//    
-//    
-//    
-//    func createFloorMapForAsync(floorNumber: Int) -> UIImage? {
-//        if let beginImageNextFloor = UIImage(named: "level\(floorNumber + 1)") {
-//            let dictionaryCoordNextFloor = jsonToString(jsonName: "json\(floorNumber + 1)")
-//            return textAllToImage(image: beginImageNextFloor, dictionaryCoord: dictionaryCoordNextFloor)
-//        }
-//        return nil
-//    }
-//
-//    
-//    func startNewMap(floorNumber: Int) {
-//        let beginImage = UIImage(named: "level\(floorNumber+1)")!
-//        let dictionaryCoord = jsonToString(jsonName: "json\(floorNumber+1)")
-//        imageView.image = textAllToImage(image: beginImage, dictionaryCoord: dictionaryCoord)
-//    }
     
     func changeFloor()  {
-        imageView.image = arrayOfFloorImages[floorNumber]
+        let toUImage:UIImage?
+        toUImage = loadFromMemory(buildingName: buildingName, floorNumber: floorNumber)
+        //let toImage = arrayOfFloorImages[floorNumber]
+        UIView.transition(with: self.imageView,
+                                  duration: 0.3,
+                                  options: .transitionCrossDissolve,
+                                  animations: { self.imageView.image = toUImage },
+                                  completion: nil)
+        
+//        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, animations: {
+//            self.imageView.image = toImage
+//        }, completion: nil)
+        //imageView.image = arrayOfFloorImages[floorNumber]
         self.title = arrayOfFloors[floorNumber]
         scrollView.zoomScale = 1.0
-        checkForBarButtons()
         loadNeedData()
     }
 
     
     @IBAction func barButtonPush(_ sender: UIBarButtonItem) {
         switch sender {
-        case barButtonUp:
-            
-            barButtonDown.isEnabled = true
-            if floorNumber == maxFloor {
-                barButtonUp.isEnabled = false
-            } else {
-                floorNumber += 1
-                changeFloor()
-            }
-        case barButtonDown:
-            barButtonUp.isEnabled = true
-            if floorNumber == minFloor {
-                barButtonDown.isEnabled = false
-            } else {
-                floorNumber -= 1
-                changeFloor()
-            }
         case barButtonCancel:
             if imageView.image != UIImage(named: "level\(floorNumber + 1)") {
                 imageView.image = UIImage(named: "level\(floorNumber + 1)")
             } else {
-                imageView.image = arrayOfFloorImages[floorNumber]
+                imageView.image = loadFromMemory(buildingName: buildingName, floorNumber: floorNumber)
             }
         case navigationBarButtonSearch:
             //let resultController = UIViewController()

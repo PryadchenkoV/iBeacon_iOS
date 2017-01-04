@@ -23,7 +23,7 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
     
     var chosenFloor = 0
     var chosenTitle = ""
-    
+    var buildingName = "Strogino"
     var parserAndBuilder = ParserAndBuilder()
     
     var arrayOfNextFloorImages = [UIImage]()
@@ -37,15 +37,28 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
             arrayOfNextFloorImages.append(UIImage(named: "level\(floor)")!)
         }
         
+//        for floor in 0...arrayOfFloors.count - 1{
+//            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//            let filePath = documentsURL.appendingPathComponent("\(buildingName)_\(floor).png").path
+//            if FileManager.default.fileExists(atPath: filePath) {
+//                arrayOfNextFloorImages.remove(at: floor)
+//                arrayOfNextFloorImages.insert(UIImage(contentsOfFile: filePath)!, at: floor)
+//                floorCounter += 1
+//                print("\(floor) Restored")
+//
+//            }
+//        }
         //UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         
         
         tableViewFloor.delegate = self
         tableViewFloor.dataSource = self
-        
-        loadMassiveOfFloors(minFloor: 0, maxFloor: 8)
-        
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent("\(buildingName)_\(0).png").path
+        if !FileManager.default.fileExists(atPath: filePath) {
+            createMassiveOfFloors(minFloor: 0, maxFloor: 8)
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -80,7 +93,8 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
         if segue.identifier == kSegueFormFloorToMap {
             if let destinantionController = segue.destination as? ViewController {
                 destinantionController.floorNumber = chosenFloor
-                destinantionController.arrayOfFloorImages = arrayOfNextFloorImages
+                //destinantionController.arrayOfFloorImages = arrayOfNextFloorImages
+                destinantionController.buildingName = buildingName
             }
         }
     }
@@ -90,17 +104,27 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
         // Dispose of any resources that can be recreated.
     }
     
-    func loadMassiveOfFloors(minFloor: Int, maxFloor: Int) {
+    func createMassiveOfFloors(minFloor: Int, maxFloor: Int) {
         let refreshBarButton: UIBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         self.navigationItem.rightBarButtonItem = refreshBarButton
         activityIndicator.startAnimating()
         for floor in minFloor...maxFloor {
-            
             queue.async {
                 if let createdImage = self.parserAndBuilder.createFloorMapForAsync(floorNumber: floor) {
-                    self.arrayOfNextFloorImages.remove(at: floor)
-                    self.arrayOfNextFloorImages.insert(createdImage, at: floor)
                     print("\(floor) finish")
+                    do {
+                        if let pngImageData = UIImagePNGRepresentation(createdImage) {
+                            
+                            let documents
+                            URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                            let fileURL = documentsURL.appendingPathComponent("\(self.buildingName)_\(floor).png")
+                            try pngImageData.write(to: fileURL, options: .atomic)
+                            print("\(floor) Saved")
+                        }
+                    }
+                    catch {
+                        
+                    }
                     if floor == maxFloor {
                         DispatchQueue.main.async {
                             self.activityIndicator.stopAnimating()

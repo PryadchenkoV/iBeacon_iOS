@@ -16,11 +16,11 @@
 		E25E10C71DE5E66500228C5F /* ChooseFloorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E10C61DE5E66500228C5F /* ChooseFloorViewController.swift */; };
 		E25E10C91DE5E88300228C5F /* FloorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E10C81DE5E88300228C5F /* FloorTableViewCell.swift */; };
 		E25E10CB1DE5F5FC00228C5F /* ParserAndBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E10CA1DE5F5FC00228C5F /* ParserAndBuilder.swift */; };
+		E269B6F91DE72E2200162C7E /* level3.png in Resources */ = {isa = PBXBuildFile; fileRef = E269B6F81DE72E2200162C7E /* level3.png */; };
 		E27A4D2F1DE32F0700D97B19 /* level6.png in Resources */ = {isa = PBXBuildFile; fileRef = E27A4D2B1DE32F0700D97B19 /* level6.png */; };
 		E27A4D301DE32F0700D97B19 /* level7.png in Resources */ = {isa = PBXBuildFile; fileRef = E27A4D2C1DE32F0700D97B19 /* level7.png */; };
 		E27A4D311DE32F0700D97B19 /* level8.png in Resources */ = {isa = PBXBuildFile; fileRef = E27A4D2D1DE32F0700D97B19 /* level8.png */; };
 		E27A4D321DE32F0700D97B19 /* level9.png in Resources */ = {isa = PBXBuildFile; fileRef = E27A4D2E1DE32F0700D97B19 /* level9.png */; };
-		E27A4D361DE3307C00D97B19 /* level3.png in Resources */ = {isa = PBXBuildFile; fileRef = E27A4D351DE3307C00D97B19 /* level3.png */; };
 		E27A4D381DE330A300D97B19 /* json3.json in Resources */ = {isa = PBXBuildFile; fileRef = E27A4D371DE330A300D97B19 /* json3.json */; };
 		E2AA74631DE0E2CD00D9E80C /* Level Up-25.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AA74621DE0E2CD00D9E80C /* Level Up-25.png */; };
 		E2AA74651DE20D4E00D9E80C /* Level_Down_100.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AA74641DE20D4E00D9E80C /* Level_Down_100.png */; };
@@ -49,11 +49,11 @@
 		E25E10C61DE5E66500228C5F /* ChooseFloorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseFloorViewController.swift; sourceTree = "<group>"; };
 		E25E10C81DE5E88300228C5F /* FloorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorTableViewCell.swift; sourceTree = "<group>"; };
 		E25E10CA1DE5F5FC00228C5F /* ParserAndBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserAndBuilder.swift; sourceTree = "<group>"; };
+		E269B6F81DE72E2200162C7E /* level3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level3.png; path = ../../../Downloads/level3.png; sourceTree = "<group>"; };
 		E27A4D2B1DE32F0700D97B19 /* level6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level6.png; path = ../../../Downloads/maps/uploadedImages/img/strogino/level6.png; sourceTree = "<group>"; };
 		E27A4D2C1DE32F0700D97B19 /* level7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level7.png; path = ../../../Downloads/maps/uploadedImages/img/strogino/level7.png; sourceTree = "<group>"; };
 		E27A4D2D1DE32F0700D97B19 /* level8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level8.png; path = ../../../Downloads/maps/uploadedImages/img/strogino/level8.png; sourceTree = "<group>"; };
 		E27A4D2E1DE32F0700D97B19 /* level9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level9.png; path = ../../../Downloads/maps/uploadedImages/img/strogino/level9.png; sourceTree = "<group>"; };
-		E27A4D351DE3307C00D97B19 /* level3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level3.png; path = ../../level3.png; sourceTree = "<group>"; };
 		E27A4D371DE330A300D97B19 /* json3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json3.json; sourceTree = "<group>"; };
 		E2AA74621DE0E2CD00D9E80C /* Level Up-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Level Up-25.png"; path = "../../../Downloads/Level Up-25.png"; sourceTree = "<group>"; };
 		E2AA74641DE20D4E00D9E80C /* Level_Down_100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Level_Down_100.png; path = ../../Level_Down_100.png; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 			children = (
 				E2EB80361DDE0AD100983148 /* level1.png */,
 				E2AA74691DE2122500D9E80C /* level2.png */,
-				E27A4D351DE3307C00D97B19 /* level3.png */,
+				E269B6F81DE72E2200162C7E /* level3.png */,
 				E2AA746A1DE2122500D9E80C /* level4.png */,
 				E2AA746B1DE2122500D9E80C /* level5.png */,
 				E27A4D2B1DE32F0700D97B19 /* level6.png */,
@@ -184,7 +184,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Ivan Pryadchenko";
 				TargetAttributes = {
 					E23513951DCE25450002A25B = {
@@ -225,12 +225,12 @@
 				E27A4D311DE32F0700D97B19 /* level8.png in Resources */,
 				E2AA74801DE2178100D9E80C /* json7.json in Resources */,
 				E27A4D301DE32F0700D97B19 /* level7.png in Resources */,
+				E269B6F91DE72E2200162C7E /* level3.png in Resources */,
 				E27A4D381DE330A300D97B19 /* json3.json in Resources */,
 				E2AA74651DE20D4E00D9E80C /* Level_Down_100.png in Resources */,
 				E27A4D321DE32F0700D97B19 /* level9.png in Resources */,
 				E2AA747C1DE2175D00D9E80C /* json5.json in Resources */,
 				E2AA74821DE2178B00D9E80C /* json8.json in Resources */,
-				E27A4D361DE3307C00D97B19 /* level3.png in Resources */,
 				E2AA74721DE2122500D9E80C /* level5.png in Resources */,
 				E2AA74701DE2122500D9E80C /* level2.png in Resources */,
 				E2283C8D1DDF8AE500F77E57 /* json1.json in Resources */,
@@ -298,6 +298,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -348,6 +349,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -377,6 +379,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = MGDFYF2DS8;
 				INFOPLIST_FILE = iBeacon_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;

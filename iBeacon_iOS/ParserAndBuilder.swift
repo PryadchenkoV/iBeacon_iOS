@@ -11,9 +11,10 @@ import UIKit
 class ParserAndBuilder: NSObject {
     
     func createFloorMapForAsync(floorNumber: Int) -> UIImage? {
+        var dictionaryCoordNextFloor = [String:String]()
         if let beginImageNextFloor = UIImage(named: "level\(floorNumber + 1)") {
-            let dictionaryCoordNextFloor = jsonToStringCoords(jsonName: "json\(floorNumber + 1)")
-            return textAllToImage(image: beginImageNextFloor, dictionaryCoord: dictionaryCoordNextFloor)
+            dictionaryCoordNextFloor = jsonToStringCoords(jsonName: "json\(floorNumber + 1)")
+            return textAllToImage(image: beginImageNextFloor, dictionaryCoord: dictionaryCoordNextFloor, buildingName: "level\(floorNumber + 1)")
         }
         return nil
     }
@@ -25,6 +26,25 @@ class ParserAndBuilder: NSObject {
         }
         return arrayOfBuildingNames
     }
+    
+    
+//    func downloadJsonFromServer() {
+//        let requestURL: NSURL = NSURL(string: "http://www.learnswiftonline.com/Samples/subway.json")!
+//        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
+//        let session = URLSession.shared
+//        let task = session.dataTask(with: urlRequest as URLRequest) {
+//            (data, response, error) -> Void in
+//            
+//            let httpResponse = response as! HTTPURLResponse
+//            let statusCode = httpResponse.statusCode
+//            
+//            if (statusCode == 200) {
+//                print("Everyone is fine, file downloaded successfully.")
+//            }
+//        }
+//        
+//        task.resume()
+//    }
     
     func jsonToStringBuildingName(jsonName:String) -> String {
         let bundle = Bundle(for: type(of: self))
@@ -64,6 +84,7 @@ class ParserAndBuilder: NSObject {
             }
             
         }
+        UserDefaults.standard.set(dictionaryCoord, forKey: jsonName)
         return dictionaryCoord
     }
     
@@ -91,7 +112,7 @@ class ParserAndBuilder: NSObject {
 
     
 
-    func textAllToImage(image:UIImage, dictionaryCoord:[String:String]) -> UIImage {
+    func textAllToImage(image:UIImage, dictionaryCoord:[String:String], buildingName: String) -> UIImage {
         let textColor = UIColor.red
         let textFont = UIFont.systemFont(ofSize: 40, weight: UIFontWeightSemibold)
         var newImage = image
@@ -116,7 +137,6 @@ class ParserAndBuilder: NSObject {
             //UIGraphicsEndImageContext()
         }
         UIGraphicsEndImageContext()
-        
         return newImage
     }
     
