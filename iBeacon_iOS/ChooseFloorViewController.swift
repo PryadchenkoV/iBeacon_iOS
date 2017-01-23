@@ -21,17 +21,34 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
     //let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test")
     let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test")
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+
     
     var chosenFloor = 0
     var chosenTitle = ""
-    var buildingName = "Strogino"
+    var buildingName = ""
+    var buildingID = -1
     var parserAndBuilder = ParserAndBuilder()
     
     var arrayOfNextFloorImages = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(notificationDownloadedJSONReceived(notification:)),
+                                               name: NSNotification.Name(rawValue: kNotificationServiceJSONOfBuildingDownloaded),
+                                               object: nil)
 
+        parserAndBuilder.downloadJSON(url: "https://miem-msiea.rhcloud.com/json?action=getBuildingInfo&buildingId=\(buildingID)", jsonName: buildingName)
+//        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//        let filePath = documentsURL.appendingPathComponent("default").path
+////        var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
+////        var getPath = paths.appendingPathComponent("default")
+////        var fileName = String(describing: NSURL.fileURL(withPath: getPath))
+//        let data = Data(contentsOfFile: filePath)
+//        
+//        print(data)
+        
         arrayOfFloors = parserAndBuilder.getNameOfBuildings()
         
         for floor in 0...arrayOfFloors.count - 1{
@@ -62,6 +79,11 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
         }
         // Do any additional setup after loading the view.
     }
+    
+    func notificationDownloadedJSONReceived(notification: Notification) {
+        print("Hi")
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayOfFloors.count

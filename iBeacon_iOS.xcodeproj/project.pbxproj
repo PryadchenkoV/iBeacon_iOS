@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E22496DC1E325B3A0014E1B3 /* ChooseBuildingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22496DB1E325B3A0014E1B3 /* ChooseBuildingViewController.swift */; };
+		E22496DE1E356C3D0014E1B3 /* BuildingFromServerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22496DD1E356C3D0014E1B3 /* BuildingFromServerTableViewCell.swift */; };
+		E22496E01E3571940014E1B3 /* DownloadedBuildingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22496DF1E3571940014E1B3 /* DownloadedBuildingsViewController.swift */; };
 		E2283C8D1DDF8AE500F77E57 /* json1.json in Resources */ = {isa = PBXBuildFile; fileRef = E2283C8C1DDF8AE500F77E57 /* json1.json */; };
 		E235139A1DCE25450002A25B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23513991DCE25450002A25B /* AppDelegate.swift */; };
 		E235139C1DCE25450002A25B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E235139B1DCE25450002A25B /* ViewController.swift */; };
@@ -40,6 +43,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E22496DB1E325B3A0014E1B3 /* ChooseBuildingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseBuildingViewController.swift; sourceTree = "<group>"; };
+		E22496DD1E356C3D0014E1B3 /* BuildingFromServerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingFromServerTableViewCell.swift; sourceTree = "<group>"; };
+		E22496DF1E3571940014E1B3 /* DownloadedBuildingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadedBuildingsViewController.swift; sourceTree = "<group>"; };
 		E2283C8C1DDF8AE500F77E57 /* json1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = json1.json; path = ../../../Downloads/json1.json; sourceTree = "<group>"; };
 		E23513961DCE25450002A25B /* iBeacon_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBeacon_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E23513991DCE25450002A25B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,11 +117,14 @@
 				E235139B1DCE25450002A25B /* ViewController.swift */,
 				E25E10CA1DE5F5FC00228C5F /* ParserAndBuilder.swift */,
 				E235139D1DCE25450002A25B /* Main.storyboard */,
+				E22496DF1E3571940014E1B3 /* DownloadedBuildingsViewController.swift */,
+				E22496DD1E356C3D0014E1B3 /* BuildingFromServerTableViewCell.swift */,
 				E23513A01DCE25460002A25B /* Assets.xcassets */,
 				E23513A21DCE25460002A25B /* LaunchScreen.storyboard */,
 				E23513A51DCE25460002A25B /* Info.plist */,
 				E25E10C61DE5E66500228C5F /* ChooseFloorViewController.swift */,
 				E25E10C81DE5E88300228C5F /* FloorTableViewCell.swift */,
+				E22496DB1E325B3A0014E1B3 /* ChooseBuildingViewController.swift */,
 			);
 			path = iBeacon_iOS;
 			sourceTree = "<group>";
@@ -261,8 +270,11 @@
 				E25E10CB1DE5F5FC00228C5F /* ParserAndBuilder.swift in Sources */,
 				E25E10C91DE5E88300228C5F /* FloorTableViewCell.swift in Sources */,
 				E25E10C71DE5E66500228C5F /* ChooseFloorViewController.swift in Sources */,
+				E22496E01E3571940014E1B3 /* DownloadedBuildingsViewController.swift in Sources */,
 				E235139C1DCE25450002A25B /* ViewController.swift in Sources */,
 				E235139A1DCE25450002A25B /* AppDelegate.swift in Sources */,
+				E22496DC1E325B3A0014E1B3 /* ChooseBuildingViewController.swift in Sources */,
+				E22496DE1E356C3D0014E1B3 /* BuildingFromServerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

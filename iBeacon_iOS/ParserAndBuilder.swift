@@ -7,8 +7,97 @@
 //
 
 import UIKit
+let kNotificationServiceGetBuildingNames = "NotificationServiceGetBuildingNames"
+let kNotificationServiceJSONOfBuildingDownloaded = "NotificationServiceJSONOfBuildingDownloaded"
 
 class ParserAndBuilder: NSObject {
+    
+    let mainURL = URL(string: "https://miem-msiea.rhcloud.com")
+    
+    func getBuildingNames() {
+        let url = URL(string: "https://miem-msiea.rhcloud.com/json?action=getBuildingsNames")
+        let session = URLSession.shared
+        let urlRequest = NSMutableURLRequest(url: url!)
+        var dictWithDate = [String:String]()
+        let task = session.dataTask(with: urlRequest as URLRequest){ (data,response,error) in
+            if error != nil{
+                print(error!.localizedDescription)
+            } else {
+                if let content = data {
+                    do {
+                        print(content)
+                        let jsonDict = try JSONSerialization.jsonObject(with: content, options: .allowFragments) as! NSArray
+                        print(jsonDict)
+                        for i in 0..<(jsonDict).count {
+                            let dictionaryOfBuilding = jsonDict[i] as! NSDictionary
+                            print(dictionaryOfBuilding["buildingId"])
+                            if let buildingID = dictionaryOfBuilding["buildingId"], let buildingName = dictionaryOfBuilding["buildingName"] {
+                                dictWithDate[String(describing: buildingID)] = String(describing: buildingName)
+                            }
+
+                        }
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNotificationServiceGetBuildingNames),
+                                                        object: nil,
+                                                        userInfo: dictWithDate)
+                    } catch let error as NSError {
+                        print(" \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+        task.resume()
+        
+    }
+    
+    func downloadJSON(url: String,jsonName: String){
+        let url = URL(string: url)
+        let urlRequest = NSMutableURLRequest(url: url!)
+        let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let documentsDirectoryPath = NSURL(string: documentsDirectoryPathString)!
+        let fileManager = FileManager.default
+        let jsonFilePath = documentsDirectoryPath.appendingPathComponent(jsonName)
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest as URLRequest){ (data,response,error) in
+            if error != nil{
+                print(error!.localizedDescription)
+            } else {
+                if let content = data {
+                    
+                    if !fileManager.fileExists(atPath: (jsonFilePath?.absoluteString)!) {
+                        let created = fileManager.createFile(atPath: (jsonFilePath?.absoluteString)!, contents: nil, attributes: nil)
+                    }
+                    do {
+                        
+                        let jsonDict = try JSONSerialization.jsonObject(with: content, options: .mutableContainers) as AnyObject
+                        let json =  try JSONSerialization.data(withJSONObject: jsonDict, options: .prettyPrinted)
+                        //print(jsonDict)
+                        
+                        let file = try FileHandle(forWritingTo: jsonFilePath!)
+                        file.write(json)
+                        print("JSON data was written to the file successfully!")
+//                        
+//                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//                        let filePath = documentsURL.appendingPathComponent("default").path
+//                        let dataNew = NSData(contentsOfFile: filePath) as! Data
+//                        
+//                        
+//                        var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
+//                        var getPath = paths.appendingPathComponent("default")
+//                        var fileName = String(describing: NSURL.fileURL(withPath: getPath))
+//                        var data = Data(contentsOfFile: fileName)
+//                        let jsonDictNew = try JSONSerialization.jsonObject(with: dataNew, options: .mutableContainers) as AnyObject
+//                        print(jsonDictNew)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNotificationServiceJSONOfBuildingDownloaded),
+                                                        object: nil,
+                                                        userInfo: nil)
+                    } catch let error as NSError {
+                        print("Couldn't write to file: \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+        task.resume()
+    }
     
     func createFloorMapForAsync(floorNumber: Int) -> UIImage? {
         var dictionaryCoordNextFloor = [String:String]()

@@ -1,21 +1,18 @@
 //
-//  FloorTableViewCell.swift
+//  BuildingFromServerTableViewCell.swift
 //  iBeacon_iOS
 //
-//  Created by Ivan Pryadchenko on 23.11.16.
-//  Copyright © 2016 Ivan Pryadchenko. All rights reserved.
+//  Created by Ivan Pryadchenko on 23.01.17.
+//  Copyright © 2017 Ivan Pryadchenko. All rights reserved.
 //
 
 import UIKit
 
-class FloorTableViewCell: UITableViewCell {
-    
-    
-    @IBOutlet weak var labelFloorName: UILabel!
+class BuildingFromServerTableViewCell: UITableViewCell {
+    @IBOutlet weak var lableNameOfBuilding: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         // Initialization code
     }
 
