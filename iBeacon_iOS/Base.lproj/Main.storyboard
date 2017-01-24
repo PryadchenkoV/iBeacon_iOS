@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="maE-Yi-vyv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="maE-Yi-vyv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -166,7 +166,7 @@
         <!--From Server-->
         <scene sceneID="WE5-UT-NQQ">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="iXY-Gy-A9P" customClass="ChooseBuildingViewController" customModule="iBeacon_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="From Server" automaticallyAdjustsScrollViewInsets="NO" id="iXY-Gy-A9P" customClass="ChooseBuildingViewController" customModule="iBeacon_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dJy-N9-zGB"/>
                         <viewControllerLayoutGuide type="bottom" id="q3d-Lm-lGn"/>
@@ -183,7 +183,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CgL-66-wm6" id="sPU-Q7-Ihh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Strogino" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVd-rJ-sxd">
@@ -215,8 +215,8 @@
                             <constraint firstItem="BGn-yN-mTC" firstAttribute="leading" secondItem="qGk-I2-jyo" secondAttribute="leading" id="nqD-nT-KdP"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="From Server" image="Level_Down_100.png" id="7Ai-9a-SB6"/>
-                    <navigationItem key="navigationItem" id="4kg-kO-xMk"/>
+                    <tabBarItem key="tabBarItem" systemItem="downloads" id="7Ai-9a-SB6"/>
+                    <navigationItem key="navigationItem" title="From Server" id="4kg-kO-xMk"/>
                     <connections>
                         <outlet property="tableBuildingFormServer" destination="BGn-yN-mTC" id="nMy-HI-q1z"/>
                         <segue destination="cau-ZJ-SOM" kind="show" identifier="fromBuildingFromServerToChooseFloor" id="EVd-Cn-4Wx"/>
@@ -226,10 +226,10 @@
             </objects>
             <point key="canvasLocation" x="1031" y="-197"/>
         </scene>
-        <!--Downloaded Buildings View Controller-->
+        <!--On Device-->
         <scene sceneID="ZWM-3L-5JB">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="k9K-6Z-8nl" customClass="DownloadedBuildingsViewController" customModule="iBeacon_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="On Device" automaticallyAdjustsScrollViewInsets="NO" id="k9K-6Z-8nl" customClass="DownloadedBuildingsViewController" customModule="iBeacon_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nud-32-719"/>
                         <viewControllerLayoutGuide type="bottom" id="K4k-9c-ec2"/>
@@ -247,11 +247,11 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Unf-6Q-dyq" id="hHT-0o-ZMN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reK-e9-un0">
-                                                    <rect key="frame" x="19" y="11" width="337" height="21"/>
+                                                    <rect key="frame" x="19" y="9" width="337" height="25.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -260,8 +260,8 @@
                                             <constraints>
                                                 <constraint firstItem="reK-e9-un0" firstAttribute="leading" secondItem="hHT-0o-ZMN" secondAttribute="leadingMargin" constant="11" id="DQH-jy-UnF"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="reK-e9-un0" secondAttribute="trailing" constant="11" id="Gdk-fz-J3w"/>
-                                                <constraint firstItem="reK-e9-un0" firstAttribute="top" secondItem="hHT-0o-ZMN" secondAttribute="topMargin" constant="3" id="ecf-Vj-OBe"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="reK-e9-un0" secondAttribute="bottom" constant="3" id="ksw-fq-zd7"/>
+                                                <constraint firstItem="reK-e9-un0" firstAttribute="top" secondItem="hHT-0o-ZMN" secondAttribute="topMargin" constant="1" id="ecf-Vj-OBe"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="reK-e9-un0" secondAttribute="bottom" constant="1" id="ksw-fq-zd7"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -273,9 +273,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="downloads" id="XXe-qd-m8I"/>
+                    <tabBarItem key="tabBarItem" title="Saved" image="SSDfilled-100.png" selectedImage="SSDfilled-100.png" id="XXe-qd-m8I"/>
                     <connections>
                         <outlet property="tableDownloadedBuildings" destination="hss-xl-imw" id="MEU-Tz-kKP"/>
+                        <segue destination="cau-ZJ-SOM" kind="show" identifier="fromDownloadedBuildingsToChooseFloor" id="uO7-DZ-7Cj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tbj-qj-Dxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -289,6 +290,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="IoH-vG-bE8"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="eD6-6R-wbR">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -303,6 +305,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Level_Down_100.png" width="25" height="25"/>
+        <image name="SSDfilled-100.png" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="uO7-DZ-7Cj"/>
+    </inferredMetricsTieBreakers>
 </document>

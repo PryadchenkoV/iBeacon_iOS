@@ -11,11 +11,15 @@ import UIKit
 let kBuildingFromServerReuseableID = "buildingFromServerReuseableID"
 let kSegueFromBuildingFromServerToChooseFloor = "fromBuildingFromServerToChooseFloor"
 
+var tupleOfDownloadedBuilding = [(String,String)]()
+
 class ChooseBuildingViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableBuildingFormServer: UITableView!
+    var refreshControl: UIRefreshControl!
     
     let parserAndBuilder = ParserAndBuilder()
+    let downloadView = DownloadedBuildingsViewController()
     
     var buildingFromServerDict = [String: String]()
     var buildingIdToSend = -1
@@ -26,16 +30,43 @@ class ChooseBuildingViewController: UIViewController,UITableViewDelegate, UITabl
 
         tableBuildingFormServer.dataSource = self
         tableBuildingFormServer.delegate = self
+        self.title = "Buildings From Server"
+        parserAndBuilder.getBuildingNames()
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refreshAction), for: UIControlEvents.valueChanged)
+        tableBuildingFormServer.addSubview(refreshControl)
         
+        
+        // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        arrayOfFloors = [String]()
+        DispatchQueue.main.async {
+            self.downloadView.createListDownloadedBuilings()
+            self.tabBarController?.tabBar.items?[1].badgeValue = String(tupleOfDownloadedBuilding.count)
+        }
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(notificationGetBuildingReceive(notification:)),
                                                name: NSNotification.Name(rawValue: kNotificationServiceGetBuildingNames),
                                                object: nil)
-        
+    }
+    
+    func refreshAction(sender:AnyObject) {
         parserAndBuilder.getBuildingNames()
-        
-        
-        // Do any additional setup after loading the view.
+        Timer.scheduledTimer(timeInterval: 10,
+                             target: self,
+                             selector: #selector(self.endRefreshing),
+                             userInfo: nil,
+                             repeats: false)
+    }
+    
+    func endRefreshing(){
+        refreshControl.endRefreshing()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,6 +81,7 @@ class ChooseBuildingViewController: UIViewController,UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         buildingIdToSend = indexPath.row + 1
         performSegue(withIdentifier: kSegueFromBuildingFromServerToChooseFloor, sender: self)
     }
@@ -62,13 +94,25 @@ class ChooseBuildingViewController: UIViewController,UITableViewDelegate, UITabl
     }
     
     func notificationGetBuildingReceive(notification: Notification) {
+        refreshControl.endRefreshing()
         if let userInfo = notification.userInfo as? [String: String] {
             buildingFromServerDict = userInfo
             DispatchQueue.main.async {
                 self.tableBuildingFormServer.reloadData()
+                self.downloadView.createListDownloadedBuilings()
+                self.tabBarController?.tabBar.items?[1].badgeValue = String(tupleOfDownloadedBuilding.count)
             }
         }
+
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        arrayOfFloors = [String]()
+//        DispatchQueue.main.async {
+//            self.downloadView.createListDownloadedBuilings()
+//            self.tabBarController?.tabBar.items?[1].badgeValue = String(tupleOfDownloadedBuilding.count)
+//        }
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

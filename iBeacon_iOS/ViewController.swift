@@ -25,11 +25,12 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchController
     
     @IBOutlet weak var barButtonCancel: UIBarButtonItem!
     
+    var floorID = -1
     var floorNumber = 0
     var buildingName = ""
     
-    let maxFloor = 8
-    let minFloor = -1
+    var maxFloor = 0
+    var minFloor = 0
     @IBOutlet weak var navigationBarButtonSearch: UIBarButtonItem!
     
     var floorTitle = ""
@@ -48,7 +49,9 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchController
     
         super.viewDidLoad()
         scrollView.delegate = self
-        
+        print(floorID)
+        print(minFloor)
+        print(maxFloor)
 //        for _ in minFloor...maxFloor {
 //            arrayOfFloorImages.append(UIImage(named: "level1")!)
 //        }
@@ -73,8 +76,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchController
         scrollView.addGestureRecognizer(tapRecognizer)
         
         
-        imageView.image = loadFromMemory(buildingName: buildingName, floorNumber: floorNumber)
-        loadNeedData()
+        imageView.image = loadFromMemory(buildingName: buildingName, floorNumber: floorID)
+        //loadNeedData()
     }
     
     func loadFromMemory(buildingName:String, floorNumber: Int) -> UIImage{
@@ -83,22 +86,24 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchController
         return UIImage(contentsOfFile: filePath)!
     }
     
-    func loadNeedData() {
-        queue.sync {
-            dictionaryOfCoords = parserAndBuilder.jsonToStringCoords(jsonName: "json\(floorNumber + 1)")
-            imageSize = parserAndBuilder.jsonToStringMapSize(jsonName: "json\(floorNumber + 1)")
-        }
-    }
+//    func loadNeedData() {
+//        queue.sync {
+//            dictionaryOfCoords = parserAndBuilder.jsonToStringCoords(jsonName: "json\(floorNumber + 1)")
+//            imageSize = parserAndBuilder.jsonToStringMapSize(jsonName: "json\(floorNumber + 1)")
+//        }
+//    }
     
     func onSwipeGuesterRecogniser(guesterRecogiser:UISwipeGestureRecognizer) {
         if guesterRecogiser.direction == .right && scrollView.zoomScale == 1.0 {
-            if floorNumber != minFloor {
+            if floorID != minFloor {
                 floorNumber -= 1
+                floorID -= 1
                 changeFloor()
             }
         } else if guesterRecogiser.direction == .left && scrollView.zoomScale == 1.0 {
-            if floorNumber != maxFloor {
+            if floorID != maxFloor {
                 floorNumber += 1
+                floorID += 1
                 changeFloor()
             }
         }
@@ -124,7 +129,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchController
     
     func changeFloor()  {
         let toUImage:UIImage?
-        toUImage = loadFromMemory(buildingName: buildingName, floorNumber: floorNumber)
+        toUImage = loadFromMemory(buildingName: buildingName, floorNumber: floorID)
         //let toImage = arrayOfFloorImages[floorNumber]
         UIView.transition(with: self.imageView,
                                   duration: 0.3,
@@ -138,17 +143,17 @@ class ViewController: UIViewController, UIScrollViewDelegate, UISearchController
         //imageView.image = arrayOfFloorImages[floorNumber]
         self.title = arrayOfFloors[floorNumber]
         scrollView.zoomScale = 1.0
-        loadNeedData()
+        //loadNeedData()
     }
 
     
     @IBAction func barButtonPush(_ sender: UIBarButtonItem) {
         switch sender {
         case barButtonCancel:
-            if imageView.image != UIImage(named: "level\(floorNumber + 1)") {
-                imageView.image = UIImage(named: "level\(floorNumber + 1)")
+            if imageView.image != UIImage(named: "level\(floorID)") {
+                imageView.image = UIImage(named: "level\(floorID)")
             } else {
-                imageView.image = loadFromMemory(buildingName: buildingName, floorNumber: floorNumber)
+                imageView.image = loadFromMemory(buildingName: buildingName, floorNumber: floorID)
             }
         case navigationBarButtonSearch:
             //let resultController = UIViewController()
