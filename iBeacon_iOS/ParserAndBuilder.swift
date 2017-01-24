@@ -12,6 +12,8 @@ let kNotificationServiceJSONOfBuildingDownloaded = "NotificationServiceJSONOfBui
 let kNotificationServiceJSONOfFloorDownloaded = "NotificationServiceJSONOfFloorDownloaded"
 let kNotificationServiceGetBuildingNamesForDownloadedList = "NotificationServiceGetBuildingNamesForDownloadedList"
 let kNotificationServiceStopWaiting = "NotificationServiceStopWaiting"
+let kNotificationServiceStartWaiting = "NotificationServiceStartWaiting"
+
 
 class ParserAndBuilder: NSObject {
     
@@ -97,7 +99,11 @@ class ParserAndBuilder: NSObject {
                                             object: nil,
                                             userInfo: nil)
             
+            
         } else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNotificationServiceStartWaiting),
+                                            object: nil,
+                                            userInfo: nil)
             let task = session.dataTask(with: urlRequest as URLRequest){ (data,response,error) in
                 if error != nil{
                     print(error!.localizedDescription)
@@ -201,6 +207,10 @@ class ParserAndBuilder: NSObject {
         if let beginImageNextFloor = UIImage(named: "level\(floorNumber)") {
             dictionaryCoordNextFloor = jsonToStringCoords(buildingName: building,jsonName: floorNumber)
             return textAllToImage(image: beginImageNextFloor, dictionaryCoord: dictionaryCoordNextFloor, buildingName: "level\(floorNumber)")
+        } else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNotificationServiceStopWaiting),
+                                            object: nil,
+                                            userInfo: nil)
         }
         return nil
     }
@@ -219,7 +229,7 @@ class ParserAndBuilder: NSObject {
                 arrayOfBuildingID.append(String(describing: mapDict["mapId"]!))
                 }
             } else {
-                print("No Floors")
+                print("No Floor")
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNotificationServiceStopWaiting),
                                                 object: nil,
                                                 userInfo: nil)
@@ -302,9 +312,15 @@ class ParserAndBuilder: NSObject {
             if let parsedData = try? JSONSerialization.jsonObject(with: dataNew, options: .mutableContainers) as AnyObject {
                 let dictionaryOfParcedData = parsedData as! NSDictionary
                 let dictionaryForBeacons = dictionaryOfParcedData["beacons"] as! NSArray
-                for i in 0..<dictionaryForBeacons.count {
-                    let dictionaryForEveryBeaconInfo = (dictionaryForBeacons[i] as! NSDictionary)
-                    dictionaryCoord["\(String(describing: dictionaryForEveryBeaconInfo["coordX"]!)):\(String(describing: dictionaryForEveryBeaconInfo["coordY"]!))"] = String(describing: dictionaryForEveryBeaconInfo["title"]!)
+                if dictionaryForBeacons.count > 0 {
+                    for i in 0..<dictionaryForBeacons.count {
+                        let dictionaryForEveryBeaconInfo = (dictionaryForBeacons[i] as! NSDictionary)
+                        dictionaryCoord["\(String(describing: dictionaryForEveryBeaconInfo["coordX"]!)):\(String(describing: dictionaryForEveryBeaconInfo["coordY"]!))"] = String(describing: dictionaryForEveryBeaconInfo["title"]!)
+                    }
+                } else {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNotificationServiceStopWaiting),
+                                                    object: nil,
+                                                    userInfo: nil)
                 }
             }
         } catch {

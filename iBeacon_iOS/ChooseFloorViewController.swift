@@ -49,6 +49,10 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
                                                selector: #selector(notificationStopWaiting(notification:)),
                                                name: NSNotification.Name(rawValue: kNotificationServiceStopWaiting),
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(notificationStartWaiting(notification:)),
+                                               name: NSNotification.Name(rawValue: kNotificationServiceStartWaiting),
+                                               object: nil)
 //
 //        let refreshBarButton: UIBarButtonItem = UIBarButtonItem(customView: activityIndicator)
 //        self.navigationItem.rightBarButtonItem = refreshBarButton
@@ -60,9 +64,7 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
         loadingIndicator.startAnimating();
         
         alert.view.addSubview(loadingIndicator)
-        DispatchQueue.main.async {
-            self.present(self.alert, animated: true, completion: nil)
-        }
+        
         //present(alert, animated: true, completion: nil)
         parserAndBuilder.downloadJSON(url: "https://miem-msiea.rhcloud.com/json?action=getBuildingInfo&buildingId=\(buildingID)", jsonName: buildingName)
 //        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -120,6 +122,12 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
             //self.activityIndicator.stopAnimating()
             self.alert.dismiss(animated: false, completion: nil)
         })
+    }
+    
+    func notificationStartWaiting(notification: Notification) {
+        DispatchQueue.main.async {
+            self.present(self.alert, animated: true, completion: nil)
+        }
     }
     
     func notificationDownloadedJSONOfFloorReceived(notification: Notification) {
