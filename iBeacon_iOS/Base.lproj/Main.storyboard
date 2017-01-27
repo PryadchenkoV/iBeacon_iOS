@@ -277,11 +277,68 @@
                     <connections>
                         <outlet property="tableDownloadedBuildings" destination="hss-xl-imw" id="MEU-Tz-kKP"/>
                         <segue destination="cau-ZJ-SOM" kind="show" identifier="fromDownloadedBuildingsToChooseFloor" id="uO7-DZ-7Cj"/>
+                        <segue destination="1le-dH-A0C" kind="show" identifier="fromDownloadedToMoreInfo" id="vff-vS-6MB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tbj-qj-Dxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1029.5999999999999" y="467.3163418290855"/>
+        </scene>
+        <!--More Info View Controller-->
+        <scene sceneID="kiQ-66-UzH">
+            <objects>
+                <viewController id="1le-dH-A0C" customClass="MoreInfoViewController" customModule="iBeacon_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Wq-Nt-Tfr"/>
+                        <viewControllerLayoutGuide type="bottom" id="tQY-pb-LV7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jBH-0z-CSl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ueR-Hd-ofa">
+                                <rect key="frame" x="16" y="141" width="343" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8dP-Sv-KJZ">
+                                <rect key="frame" x="16" y="178" width="343" height="343"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="343" id="cRU-1K-z5z"/>
+                                </constraints>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKJ-cy-5Je">
+                                <rect key="frame" x="16" y="103" width="106" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="106" id="POm-PT-2GY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ueR-Hd-ofa" firstAttribute="top" secondItem="bKJ-cy-5Je" secondAttribute="bottom" constant="17" id="NOl-a3-1jw"/>
+                            <constraint firstItem="8dP-Sv-KJZ" firstAttribute="centerX" secondItem="jBH-0z-CSl" secondAttribute="centerX" id="NsG-Cv-wM9"/>
+                            <constraint firstItem="8dP-Sv-KJZ" firstAttribute="leading" secondItem="jBH-0z-CSl" secondAttribute="leadingMargin" id="d2b-uk-aao"/>
+                            <constraint firstItem="8dP-Sv-KJZ" firstAttribute="trailing" secondItem="jBH-0z-CSl" secondAttribute="trailingMargin" id="gDW-QB-bRg"/>
+                            <constraint firstItem="bKJ-cy-5Je" firstAttribute="leading" secondItem="jBH-0z-CSl" secondAttribute="leadingMargin" id="gKL-Sb-l56"/>
+                            <constraint firstItem="tQY-pb-LV7" firstAttribute="top" secondItem="8dP-Sv-KJZ" secondAttribute="bottom" constant="97" id="h4B-5a-x5N"/>
+                            <constraint firstItem="bKJ-cy-5Je" firstAttribute="top" secondItem="2Wq-Nt-Tfr" secondAttribute="bottom" constant="39" id="k6P-3M-9Fl"/>
+                            <constraint firstItem="ueR-Hd-ofa" firstAttribute="trailing" secondItem="jBH-0z-CSl" secondAttribute="trailingMargin" id="qzG-RK-LAV"/>
+                            <constraint firstItem="ueR-Hd-ofa" firstAttribute="leading" secondItem="jBH-0z-CSl" secondAttribute="leadingMargin" id="z1T-6C-Fdu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lableAddress" destination="ueR-Hd-ofa" id="58Q-im-ygo"/>
+                        <outlet property="mapView" destination="8dP-Sv-KJZ" id="g7B-2w-Psp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="czt-1y-gUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1935.2" y="922.48875562218893"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1CN-Kh-bcY">

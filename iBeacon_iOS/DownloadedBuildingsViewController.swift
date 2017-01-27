@@ -10,6 +10,7 @@ import UIKit
 
 let kDownloadedBuildingReuseableID = "downloadedBuildingReuseableID"
 let kSegueFromDownloadedBuildingsToChooseFloor = "fromDownloadedBuildingsToChooseFloor"
+let kSegueFromDownloadedToMoreInfo = "fromDownloadedToMoreInfo"
 
 class DownloadedBuildingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
@@ -63,10 +64,29 @@ class DownloadedBuildingsViewController: UIViewController, UITableViewDataSource
         performSegue(withIdentifier: kSegueFromDownloadedBuildingsToChooseFloor, sender: self)
     }
     
+     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        numberOfRowSelected = editActionsForRowAt.row
+        let infoAboutBuilding = UITableViewRowAction(style: .default, title: "Info") { action, index in
+            self.performSegue(withIdentifier: kSegueFromDownloadedToMoreInfo, sender: self)
+        }
+        infoAboutBuilding.backgroundColor = .lightGray
+        
+        return [infoAboutBuilding]
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationVC = segue.destination as? ChooseFloorViewController {
+        if segue.identifier == kSegueFromDownloadedBuildingsToChooseFloor {
+            let destinationVC = segue.destination as! ChooseFloorViewController
             destinationVC.buildingID = Int(tupleOfDownloadedBuilding[numberOfRowSelected].0)!
             destinationVC.buildingName = tupleOfDownloadedBuilding[numberOfRowSelected].1
+        } else if segue.identifier == kSegueFromDownloadedToMoreInfo {
+            let destinationVC = segue.destination as! MoreInfoViewController
+            destinationVC.buildingName = tupleOfDownloadedBuilding[numberOfRowSelected].1
+            
         }
     }
 

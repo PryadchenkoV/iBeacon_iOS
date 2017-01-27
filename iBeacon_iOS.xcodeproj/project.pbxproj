@@ -28,6 +28,7 @@
 		E2AA74701DE2122500D9E80C /* level13.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AA74691DE2122500D9E80C /* level13.png */; };
 		E2AA74711DE2122500D9E80C /* level15.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AA746A1DE2122500D9E80C /* level15.png */; };
 		E2AA74721DE2122500D9E80C /* level16.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AA746B1DE2122500D9E80C /* level16.png */; };
+		E2BC82331E394011005D553E /* MoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BC82321E394011005D553E /* MoreInfoViewController.swift */; };
 		E2CE8EDA1E1D68E6008AFF88 /* level11.png in Resources */ = {isa = PBXBuildFile; fileRef = E2CE8ED91E1D68E6008AFF88 /* level11.png */; };
 		E2EB80371DDE0AD100983148 /* level12.png in Resources */ = {isa = PBXBuildFile; fileRef = E2EB80361DDE0AD100983148 /* level12.png */; };
 		E2FFE47A1E37575900A19987 /* SSDfilled-100.png in Resources */ = {isa = PBXBuildFile; fileRef = E2FFE4791E37575900A19987 /* SSDfilled-100.png */; };
@@ -57,6 +58,7 @@
 		E2AA74691DE2122500D9E80C /* level13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level13.png; path = ../../../Downloads/maps/uploadedImages/BWmaps/level13.png; sourceTree = "<group>"; };
 		E2AA746A1DE2122500D9E80C /* level15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level15.png; path = ../../../Downloads/maps/uploadedImages/BWmaps/level15.png; sourceTree = "<group>"; };
 		E2AA746B1DE2122500D9E80C /* level16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level16.png; path = ../../../Downloads/maps/uploadedImages/BWmaps/level16.png; sourceTree = "<group>"; };
+		E2BC82321E394011005D553E /* MoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoViewController.swift; sourceTree = "<group>"; };
 		E2CE8ED91E1D68E6008AFF88 /* level11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level11.png; path = ../../../Downloads/maps/uploadedImages/img/strogino/level11.png; sourceTree = "<group>"; };
 		E2EB80361DDE0AD100983148 /* level12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level12.png; path = ../../../Downloads/maps/uploadedImages/img/strogino/level12.png; sourceTree = "<group>"; };
 		E2FFE4791E37575900A19987 /* SSDfilled-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SSDfilled-100.png"; path = "../../SSDfilled-100.png"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				E23513991DCE25450002A25B /* AppDelegate.swift */,
 				E22496DB1E325B3A0014E1B3 /* ChooseBuildingViewController.swift */,
 				E22496DF1E3571940014E1B3 /* DownloadedBuildingsViewController.swift */,
+				E2BC82321E394011005D553E /* MoreInfoViewController.swift */,
 				E25E10C61DE5E66500228C5F /* ChooseFloorViewController.swift */,
 				E235139B1DCE25450002A25B /* ViewController.swift */,
 				E25E10CA1DE5F5FC00228C5F /* ParserAndBuilder.swift */,
@@ -237,6 +240,7 @@
 				E22496E01E3571940014E1B3 /* DownloadedBuildingsViewController.swift in Sources */,
 				E235139C1DCE25450002A25B /* ViewController.swift in Sources */,
 				E235139A1DCE25450002A25B /* AppDelegate.swift in Sources */,
+				E2BC82331E394011005D553E /* MoreInfoViewController.swift in Sources */,
 				E22496DC1E325B3A0014E1B3 /* ChooseBuildingViewController.swift in Sources */,
 				E22496DE1E356C3D0014E1B3 /* BuildingFromServerTableViewCell.swift in Sources */,
 			);

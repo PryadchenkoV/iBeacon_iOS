@@ -86,6 +86,7 @@ class ParserAndBuilder: NSObject {
     }
     
     
+    
     func downloadJSON(url: String,jsonName: String){
         let url = URL(string: url)
         let urlRequest = NSMutableURLRequest(url: url!)
@@ -213,6 +214,30 @@ class ParserAndBuilder: NSObject {
                                             userInfo: nil)
         }
         return nil
+    }
+    
+    func getBuildingAdress(nameOfBuilding: String) -> String{
+        var stringAdressOfBuilding = ""
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent(nameOfBuilding).path
+        let dataNew = NSData(contentsOfFile: filePath) as! Data
+        do {
+            let jsonDictNew = try JSONSerialization.jsonObject(with: dataNew, options: .mutableContainers) as AnyObject
+            var bufString = ""
+            for name in (["country","city","street","house"]) {
+                bufString += jsonDictNew[name] as! String
+                if name == "country" {
+                    bufString += ", "
+                } else {
+                    bufString += " "
+                }
+            }
+            stringAdressOfBuilding = bufString
+        }
+        catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        return stringAdressOfBuilding
     }
     
     func getIDOfBuildings(nameOfBuilding: String) -> [String] {
