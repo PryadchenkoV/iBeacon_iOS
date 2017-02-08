@@ -22,17 +22,12 @@ class MoreInfoViewController: UIViewController {
         super.viewDidLoad()
         
         lableAddress.text = parserAndBuilder.getBuildingAdress(nameOfBuilding: buildingName)
-        
-        let address = lableAddress.text
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(address!, completionHandler: {(placemarks, error) -> Void in
-            if((error) != nil){
-                print("Error", error)
-            }
-            if let placemark = placemarks?.first {
-                self.mapView.addAnnotation(MKPlacemark(placemark: placemark))
-            }
-        })
+        let location = CLLocationCoordinate2D.init(latitude: 55.803529, longitude: 37.409817)
+        mapView.addAnnotation(MKPlacemark(coordinate: location))
+        mapView.setCenter(location, animated: true)
+        let span = MKCoordinateSpanMake(0.020, 0.020)
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapView.setRegion(region, animated: true)
         // Do any additional setup after loading the view.
     }
 
