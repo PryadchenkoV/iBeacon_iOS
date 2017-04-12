@@ -12,6 +12,7 @@ let kBuildingFromServerReuseableID = "buildingFromServerReuseableID"
 let kSegueFromBuildingFromServerToChooseFloor = "fromBuildingFromServerToChooseFloor"
 
 var tupleOfDownloadedBuilding = [(String,String)]()
+var beaconArray = [BeaconInfo]()
 
 class ChooseBuildingViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
@@ -23,11 +24,12 @@ class ChooseBuildingViewController: UIViewController,UITableViewDelegate, UITabl
     
     var buildingFromServerDict = [String: String]()
     var buildingIdToSend = -1
+    var numberOfRowSelected = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableBuildingFormServer.dataSource = self
         tableBuildingFormServer.delegate = self
         self.title = "Buildings From Server"
@@ -37,8 +39,7 @@ class ChooseBuildingViewController: UIViewController,UITableViewDelegate, UITabl
         refreshControl.addTarget(self, action: #selector(self.refreshAction), for: UIControlEvents.valueChanged)
         tableBuildingFormServer.addSubview(refreshControl)
         
-        
-        // Do any additional setup after loading the view.
+            // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         arrayOfFloors = [String]()
@@ -65,6 +66,7 @@ class ChooseBuildingViewController: UIViewController,UITableViewDelegate, UITabl
         refreshControl.endRefreshing()
     }
     
+    
     override func viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
@@ -87,8 +89,13 @@ class ChooseBuildingViewController: UIViewController,UITableViewDelegate, UITabl
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationVC = segue.destination as? ChooseFloorViewController {
+        if segue.identifier == kSegueFromBuildingFromServerToChooseFloor {
+            let destinationVC = segue.destination as! ChooseFloorViewController
             destinationVC.buildingID = buildingIdToSend
+            destinationVC.buildingName = buildingFromServerDict[String(buildingIdToSend)]!
+        } else if segue.identifier == kSegueToMoreInfo {
+            let destinationVC = segue.destination as! MoreInfoViewController
+            print(buildingFromServerDict[String(buildingIdToSend)]!)
             destinationVC.buildingName = buildingFromServerDict[String(buildingIdToSend)]!
         }
     }
@@ -104,6 +111,20 @@ class ChooseBuildingViewController: UIViewController,UITableViewDelegate, UITabl
             }
         }
 
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        buildingIdToSend = editActionsForRowAt.row + 1
+        let infoAboutBuilding = UITableViewRowAction(style: .default, title: "   Info      ") { _, _ in
+            self.performSegue(withIdentifier: kSegueToMoreInfo, sender: self)
+            tableView.setEditing(false, animated: true)
+        }
+        infoAboutBuilding.backgroundColor = .lightGray
+        return [infoAboutBuilding]
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
     
 //    override func viewDidAppear(_ animated: Bool) {

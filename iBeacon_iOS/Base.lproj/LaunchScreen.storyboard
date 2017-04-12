@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,12 +20,38 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ib_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="ysV-tj-5bd">
+                                <rect key="frame" x="37" y="116" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="i70-8I-veS"/>
+                                    <constraint firstAttribute="height" constant="300" id="yzg-D7-xDi"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iBeacon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxT-hd-rVK">
+                                <rect key="frame" x="37" y="389" width="300" height="65"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="54"/>
+                                <color key="textColor" red="0.91191887855529785" green="0.147804856300354" blue="0.38919979333877563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.32156862745098036" green="0.38255709409713745" blue="0.73550742864608765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.32549019607843138" green="0.38431372549019605" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="JxT-hd-rVK" firstAttribute="top" secondItem="ysV-tj-5bd" secondAttribute="bottom" constant="-27" id="EYP-cL-Xjg"/>
+                            <constraint firstItem="JxT-hd-rVK" firstAttribute="trailing" secondItem="ysV-tj-5bd" secondAttribute="trailing" id="GI3-oA-PpJ"/>
+                            <constraint firstItem="ysV-tj-5bd" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-67.5" id="QNO-kI-CNM"/>
+                            <constraint firstItem="ysV-tj-5bd" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="dbg-CH-b8N"/>
+                            <constraint firstItem="JxT-hd-rVK" firstAttribute="leading" secondItem="ysV-tj-5bd" secondAttribute="leading" id="ry0-Kc-rY5"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ib_logo.png" width="1024" height="1024"/>
+    </resources>
 </document>

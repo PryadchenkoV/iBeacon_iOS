@@ -198,6 +198,7 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
         if segue.identifier == kSegueFormFloorToMap {
             if let destinantionController = segue.destination as? ViewController {
                 destinantionController.floorNumber = chosenFloor
+                destinantionController.floorTitle = arrayOfFloors[chosenFloor]
                 destinantionController.minFloor = Int(arrayOfFloorID.first!)!
                 destinantionController.maxFloor = Int(arrayOfFloorID.last!)!
                 destinantionController.floorID = Int(arrayOfFloorID[chosenFloor])!
@@ -279,6 +280,7 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
                 if floor == arrayOfFloorID.last {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
                         //self.activityIndicator.stopAnimating()
+                        self.createArrayOfBeacons()
                         self.alert.dismiss(animated: false, completion: nil)
                     })
                 }
@@ -335,6 +337,10 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
 
-    
+    func createArrayOfBeacons(){
+        for floor in arrayOfFloorID {
+            parserAndBuilder.jsonToBeaconArray(buildingName: buildingName, jsonName: floor)
+        }
+    }
 
 }

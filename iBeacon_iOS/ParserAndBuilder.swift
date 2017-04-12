@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 let kNotificationServiceGetBuildingNames = "NotificationServiceGetBuildingNames"
 let kNotificationServiceJSONOfBuildingDownloaded = "NotificationServiceJSONOfBuildingDownloaded"
 let kNotificationServiceJSONOfFloorDownloaded = "NotificationServiceJSONOfFloorDownloaded"
@@ -14,9 +15,9 @@ let kNotificationServiceGetBuildingNamesForDownloadedList = "NotificationService
 let kNotificationServiceStopWaiting = "NotificationServiceStopWaiting"
 let kNotificationServiceStartWaiting = "NotificationServiceStartWaiting"
 
-
 class ParserAndBuilder: NSObject {
     
+    let screenMult = UIDevice.current.getScreenMultiplayer()
     let mainURL = URL(string: "https://miem-msiea.rhcloud.com")
     
     func getBuildingNames() {
@@ -339,7 +340,15 @@ class ParserAndBuilder: NSObject {
                 let dictionaryForBeacons = dictionaryOfParcedData["beacons"] as! NSArray
                 if dictionaryForBeacons.count > 0 {
                     for i in 0..<dictionaryForBeacons.count {
+                        
                         let dictionaryForEveryBeaconInfo = (dictionaryForBeacons[i] as! NSDictionary)
+                        print(Int(String(describing:dictionaryForEveryBeaconInfo["minor"]!))!)
+//                        let beaconInfo = BeaconInfo(minor: Int(String(describing:dictionaryForEveryBeaconInfo["minor"]!))!,
+//                                                    major: Int(String(describing:dictionaryForEveryBeaconInfo["major"]!))!,
+//                                                    coordX: Int(String(describing:dictionaryForEveryBeaconInfo["coordX"]!))!,
+//                                                    coordY: Int(String(describing:dictionaryForEveryBeaconInfo["coordY"]!))!,
+//                                                    floor: String(describing: dictionaryOfParcedData["mapLevel"]!))
+//                        beaconArray.append(beaconInfo)
                         dictionaryCoord["\(String(describing: dictionaryForEveryBeaconInfo["coordX"]!)):\(String(describing: dictionaryForEveryBeaconInfo["coordY"]!))"] = String(describing: dictionaryForEveryBeaconInfo["title"]!)
                     }
                 } else {
@@ -348,14 +357,49 @@ class ParserAndBuilder: NSObject {
                                                     userInfo: nil)
                 }
             }
-        } catch {
-            print(error.localizedDescription)
         }
+//        for i in beaconArray {
+//            print(i.major)
+//            print(i.minor)
+//        }
     return dictionaryCoord
     }
     
     
-
+    func jsonToBeaconArray(buildingName: String,jsonName: String) {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent(buildingName + jsonName).path
+        let dataNew = NSData(contentsOfFile: filePath) as! Data
+        do {
+            if let parsedData = try? JSONSerialization.jsonObject(with: dataNew, options: .mutableContainers) as AnyObject {
+                let dictionaryOfParcedData = parsedData as! NSDictionary
+                let dictionaryForBeacons = dictionaryOfParcedData["beacons"] as! NSArray
+                if dictionaryForBeacons.count > 0 {
+                    for i in 0..<dictionaryForBeacons.count {
+                        
+                        let dictionaryForEveryBeaconInfo = (dictionaryForBeacons[i] as! NSDictionary)
+                        print(Int(String(describing:dictionaryForEveryBeaconInfo["minor"]!))!)
+                                                let beaconInfo = BeaconInfo(minor: Int(String(describing:dictionaryForEveryBeaconInfo["minor"]!))!,
+                                                                            major: Int(String(describing:dictionaryForEveryBeaconInfo["major"]!))!,
+                                                                            coordX: Int(String(describing:dictionaryForEveryBeaconInfo["coordX"]!))!,
+                                                                            coordY: Int(String(describing:dictionaryForEveryBeaconInfo["coordY"]!))!,
+                                                                            floor: String(describing: dictionaryOfParcedData["mapLevel"]!),
+                                                                            name: String(describing: dictionaryForEveryBeaconInfo["title"]!))
+                                                beaconArray.append(beaconInfo)
+                    
+                    }
+                } else {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNotificationServiceStopWaiting),
+                                                    object: nil,
+                                                    userInfo: nil)
+                }
+            }
+        }
+        for i in beaconArray {
+            print(i.major)
+            print(i.minor)
+        }
+    }
     
     
     func jsonToStringMapSize(jsonName: String) -> (mapSizeX:Int,mapSizeY:Int) {
@@ -383,7 +427,7 @@ class ParserAndBuilder: NSObject {
 
     func textAllToImage(image:UIImage, dictionaryCoord:[String:String], buildingName: String) -> UIImage {
         let textColor = UIColor.red
-        let textFont = UIFont.systemFont(ofSize: 40, weight: UIFontWeightSemibold)
+        let textFont = UIFont.systemFont(ofSize: CGFloat(20 * screenMult), weight: UIFontWeightSemibold)
         var newImage = image
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
@@ -398,7 +442,7 @@ class ParserAndBuilder: NSObject {
         for (coords, text) in dictionaryCoord {
             let coordX = coords.components(separatedBy: ":")[0]
             let coordY = coords.components(separatedBy: ":")[1]
-            let point = CGPoint(x: Int(coordX)!, y: Int(coordY)!)
+            let point = CGPoint(x: Int(coordX)! - 20 * screenMult, y: Int(coordY)! - 20 * screenMult)
             let rect = CGRect(origin: point, size: image.size)
             text.draw(in: rect, withAttributes: textFontAttributes)
             
@@ -407,6 +451,26 @@ class ParserAndBuilder: NSObject {
         }
         UIGraphicsEndImageContext()
         return newImage
+    }
+    
+    func placeMarker(buildingName:String, floorNumber: Int, coordX:Int, coordY:Int, flag:Int) -> UIImage {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent("\(buildingName)_\(floorNumber).png").path
+        let imageToTransform = UIImage(contentsOfFile: filePath)!
+        var imageToPlace = UIImage(named: "red-ringX2.png")
+        switch(flag){
+            case 1: imageToPlace = UIImage(named: "red-ringX\(screenMult).png")
+            case 2: imageToPlace = UIImage(named: "blue-squareX\(screenMult).png")
+            default: break
+        }
+        let scale = imageToTransform.scale
+        UIGraphicsBeginImageContextWithOptions(imageToTransform.size, false, scale)
+        imageToTransform.draw(in: CGRect(origin: CGPoint.zero, size: imageToTransform.size))
+        imageToPlace?.draw(in: CGRect(origin: CGPoint.init(x: (coordX * screenMult  - (55 * screenMult)), y: (coordY * screenMult) - (55 * screenMult)), size: (imageToPlace?.size)!))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
     }
     
 

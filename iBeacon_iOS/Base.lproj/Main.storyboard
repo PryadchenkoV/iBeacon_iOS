@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="maE-Yi-vyv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="maE-Yi-vyv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,7 +34,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Floor 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eY3-3h-4SW">
-                                                    <rect key="frame" x="133" y="6" width="76.5" height="31.5"/>
+                                                    <rect key="frame" x="132.5" y="6" width="77" height="31.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -112,6 +112,15 @@
                                             <action selector="barButtonPush:" destination="WLD-Ww-2XG" id="gRd-3j-ML1"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="145.5" style="plain" systemItem="fixedSpace" id="5nm-10-xXq">
+                                        <inset key="imageInsets" minX="100" minY="0.0" maxX="100" maxY="0.0"/>
+                                    </barButtonItem>
+                                    <barButtonItem width="30" systemItem="action" id="ZFz-5A-3nL">
+                                        <inset key="imageInsets" minX="600" minY="0.0" maxX="600" maxY="0.0"/>
+                                        <connections>
+                                            <action selector="barButtonPush:" destination="WLD-Ww-2XG" id="7Ix-AP-yuK"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -134,6 +143,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="barButtonAction" destination="ZFz-5A-3nL" id="3uP-ql-6zh"/>
                         <outlet property="barButtonCancel" destination="e7A-0C-hrP" id="h1u-gJ-tWq"/>
                         <outlet property="imageView" destination="JYE-wD-Ann" id="Ko6-1a-F2a"/>
                         <outlet property="navigationBarButtonSearch" destination="tD9-OU-flW" id="ZFg-KW-Iee"/>
@@ -220,6 +230,7 @@
                     <connections>
                         <outlet property="tableBuildingFormServer" destination="BGn-yN-mTC" id="nMy-HI-q1z"/>
                         <segue destination="cau-ZJ-SOM" kind="show" identifier="fromBuildingFromServerToChooseFloor" id="EVd-Cn-4Wx"/>
+                        <segue destination="1le-dH-A0C" kind="show" identifier="ToMoreInfo" id="TMC-tD-1BS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4xd-Pt-A1l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -238,9 +249,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hss-xl-imw">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hss-xl-imw">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="downloadedBuildingReuseableID" id="Unf-6Q-dyq" customClass="BuildingFromServerTableViewCell" customModule="iBeacon_iOS" customModuleProvider="target">
@@ -272,12 +282,18 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="K4k-9c-ec2" firstAttribute="top" secondItem="hss-xl-imw" secondAttribute="bottom" id="Mm0-jQ-jrA"/>
+                            <constraint firstItem="hss-xl-imw" firstAttribute="leading" secondItem="iRS-vM-Eoj" secondAttribute="leading" id="UKo-di-k8L"/>
+                            <constraint firstAttribute="trailing" secondItem="hss-xl-imw" secondAttribute="trailing" id="VhN-Ef-hZ3"/>
+                            <constraint firstItem="hss-xl-imw" firstAttribute="top" secondItem="Nud-32-719" secondAttribute="bottom" id="rJ3-xJ-2Lk"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Saved" image="SSDfilled-100.png" selectedImage="SSDfilled-100.png" id="XXe-qd-m8I"/>
                     <connections>
                         <outlet property="tableDownloadedBuildings" destination="hss-xl-imw" id="MEU-Tz-kKP"/>
                         <segue destination="cau-ZJ-SOM" kind="show" identifier="fromDownloadedBuildingsToChooseFloor" id="uO7-DZ-7Cj"/>
-                        <segue destination="1le-dH-A0C" kind="show" identifier="fromDownloadedToMoreInfo" id="vff-vS-6MB"/>
+                        <segue destination="1le-dH-A0C" kind="show" identifier="ToMoreInfo" id="vff-vS-6MB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tbj-qj-Dxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -365,6 +381,7 @@
         <image name="SSDfilled-100.png" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uO7-DZ-7Cj"/>
+        <segue reference="EVd-Cn-4Wx"/>
+        <segue reference="vff-vS-6MB"/>
     </inferredMetricsTieBreakers>
 </document>

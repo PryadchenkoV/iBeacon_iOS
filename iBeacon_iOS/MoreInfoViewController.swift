@@ -20,7 +20,7 @@ class MoreInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = buildingName
         lableAddress.text = parserAndBuilder.getBuildingAdress(nameOfBuilding: buildingName)
         let location = CLLocationCoordinate2D.init(latitude: 55.803529, longitude: 37.409817)
         mapView.addAnnotation(MKPlacemark(coordinate: location))
