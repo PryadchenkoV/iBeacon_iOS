@@ -45,7 +45,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerD
     var maxFloor = 0
     var minFloor = 0
     var dictionaryOfCoords = [String:String]()
-    
+    var bufColor = UIColor.blue
     let parserAndBuilder = ParserAndBuilder()
     
 //    var arrayOfFloorImages = [UIImage]()
@@ -58,7 +58,13 @@ class ViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerD
     
         super.viewDidLoad()
         
+        bufColor = barButtonCancel.tintColor!
+        
         barButtonCancel.tintColor = UIColor.clear
+        barButtonCancel.isEnabled = false
+        
+        
+        
         
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
@@ -103,6 +109,10 @@ class ViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerD
         }
         
         //imageView.image = parserAndBuilder.placeMarker(buildingName: buildingName, floorNumber: floorID, coordX: beaconArray[4].coordX, coordY: beaconArray[4].coordY)
+    }
+    
+    func handleTouchTabbarCenter(){
+        
     }
     
     func loadFromMemory(buildingName:String, floorNumber: Int) -> UIImage{
@@ -219,11 +229,9 @@ class ViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerD
     @IBAction func barButtonPush(_ sender: UIBarButtonItem) {
         switch sender {
         case barButtonCancel:
-            if imageView.image != UIImage(named: "level\(floorID)") {
-                imageView.image = UIImage(named: "level\(floorID)")
-            } else {
                 imageView.image = loadFromMemory(buildingName: buildingName, floorNumber: floorID)
-            }
+                barButtonCancel.tintColor = UIColor.clear
+                barButtonCancel.isEnabled = false
         case navigationBarButtonSearch:
             //let resultController = UIViewController()
             searchController.dimsBackgroundDuringPresentation = false
@@ -240,6 +248,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerD
                     self.imageView.image = self.loadFromMemory(buildingName: self.buildingName, floorNumber: self.floorID)
                 }
             }))
+            alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
             
         default:
@@ -263,6 +272,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerD
                 DispatchQueue.main.async {
                     self.imageView.image = self.parserAndBuilder.placeMarker(buildingName: self.buildingName, floorNumber: self.floorID, coordX: item.coordX, coordY: item.coordY, flag: 2)
                 }
+                barButtonCancel.tintColor = bufColor
+                barButtonCancel.isEnabled = true
                 self.dismiss(animated: true, completion: nil)
                 //                var coordX = Double(item.coordX)
                 //                var coordY = Double(item.coordY)
@@ -291,6 +302,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerD
 //                scrollView.zoom(to: zoomRect, animated: true)
                 break
             } else if item.name == searchBar.text! && item.floor != floorTitle {
+                barButtonCancel.tintColor = bufColor
+                barButtonCancel.isEnabled = true
                 var tmp = item.floor.components(separatedBy: " ")
                 print(Int(tmp[1])! - floorNumber)
                 floorID += Int(tmp[1])! - floorNumber

@@ -83,10 +83,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" directionalLockEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZG4-Ni-lta">
-                                <rect key="frame" x="0.0" y="64" width="375" height="510"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <subviews>
                                     <imageView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JYE-wD-Ann">
-                                        <rect key="frame" x="0.0" y="8" width="375" height="494"/>
+                                        <rect key="frame" x="0.0" y="8" width="375" height="543"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </imageView>
                                 </subviews>
@@ -101,7 +101,7 @@
                                 </constraints>
                             </scrollView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KzQ-vb-ksC">
-                                <rect key="frame" x="0.0" y="574" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="9jP-Nd-F3f"/>
                                 </constraints>
@@ -112,15 +112,14 @@
                                             <action selector="barButtonPush:" destination="WLD-Ww-2XG" id="gRd-3j-ML1"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="145.5" style="plain" systemItem="fixedSpace" id="5nm-10-xXq">
-                                        <inset key="imageInsets" minX="100" minY="0.0" maxX="100" maxY="0.0"/>
-                                    </barButtonItem>
-                                    <barButtonItem width="30" systemItem="action" id="ZFz-5A-3nL">
-                                        <inset key="imageInsets" minX="600" minY="0.0" maxX="600" maxY="0.0"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="BNX-Kk-eYn"/>
+                                    <barButtonItem systemItem="action" id="ZFz-5A-3nL">
                                         <connections>
                                             <action selector="barButtonPush:" destination="WLD-Ww-2XG" id="7Ix-AP-yuK"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="gbI-J4-AlP"/>
+                                    <barButtonItem systemItem="pageCurl" id="bN5-Pr-HVW"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -142,6 +141,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="barButtonAction" destination="ZFz-5A-3nL" id="3uP-ql-6zh"/>
                         <outlet property="barButtonCancel" destination="e7A-0C-hrP" id="h1u-gJ-tWq"/>
