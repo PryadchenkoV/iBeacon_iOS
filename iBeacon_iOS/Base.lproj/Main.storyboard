@@ -60,8 +60,15 @@
                             <constraint firstItem="gt9-In-UWE" firstAttribute="top" secondItem="Il9-Uu-iER" secondAttribute="bottom" id="jkt-cu-VB5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Choose Floor" id="qwz-RK-YT4"/>
+                    <navigationItem key="navigationItem" title="Choose Floor" id="qwz-RK-YT4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="8dg-FL-3iC">
+                            <connections>
+                                <action selector="barButtonPushed:" destination="cau-ZJ-SOM" id="2sQ-ae-ldV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="barButtonSearch" destination="8dg-FL-3iC" id="jok-Fs-MYj"/>
                         <outlet property="tableViewFloor" destination="Il9-Uu-iER" id="AXe-h0-4uJ"/>
                         <segue destination="WLD-Ww-2XG" kind="show" identifier="fromFloorToMap" id="rd1-Kr-5M5"/>
                     </connections>

@@ -42,6 +42,9 @@ class ViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerD
     var floorNumber = 0
     var buildingName = ""
     
+    var searchFlag = false
+    var searchRoom = ""
+    
     var maxFloor = 0
     var minFloor = 0
     var dictionaryOfCoords = [String:String]()
@@ -107,12 +110,18 @@ class ViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerD
         queue.sync {
             imageSize = parserAndBuilder.jsonToStringMapSize(jsonName: "json\(floorNumber)")
         }
-        
+        if searchFlag {
+            for item in beaconArray {
+                if item.name == searchRoom {
+                    DispatchQueue.main.async {
+                        self.imageView.image = self.parserAndBuilder.placeMarker(buildingName: self.buildingName, floorNumber: self.floorID, coordX: item.coordX, coordY: item.coordY, flag: 2)
+                    }
+                    barButtonCancel.tintColor = bufColor
+                    barButtonCancel.isEnabled = true
+                }
+            }
+        }
         //imageView.image = parserAndBuilder.placeMarker(buildingName: buildingName, floorNumber: floorID, coordX: beaconArray[4].coordX, coordY: beaconArray[4].coordY)
-    }
-    
-    func handleTouchTabbarCenter(){
-        
     }
     
     func loadFromMemory(buildingName:String, floorNumber: Int) -> UIImage{
@@ -234,19 +243,22 @@ class ViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerD
                 barButtonCancel.isEnabled = false
         case navigationBarButtonSearch:
             //let resultController = UIViewController()
-            searchController.dimsBackgroundDuringPresentation = false
+            searchController.dimsBackgroundDuringPresentation = true
             searchController.searchBar.placeholder = "Enter the room..."
             searchController.searchBar.delegate = self
             self.present(searchController, animated: true, completion: nil)
         case barButtonAction:
             let alert = UIAlertController(title: "Menu", message: "Choose an action", preferredStyle: .actionSheet)
             
-            alert.addAction(UIAlertAction.init(title: "Show/Hide rooms", style: .default, handler: { (_) in
+            alert.addAction(UIAlertAction.init(title: "Show/Hide Rooms", style: .default, handler: { (_) in
                 if self.imageView.image != UIImage(named: "level\(self.floorID)") {
                     self.imageView.image = UIImage(named: "level\(self.floorID)")
                 } else {
                     self.imageView.image = self.loadFromMemory(buildingName: self.buildingName, floorNumber: self.floorID)
                 }
+            }))
+            alert.addAction(UIAlertAction.init(title: "Choose Floor", style: .default, handler: { (_) in
+                self.alertChangeFloor()
             }))
             alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -256,6 +268,19 @@ class ViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerD
         }
     
         
+    }
+    
+    func alertChangeFloor(){
+        let alert = UIAlertController(title: "Choose Floor" , message: nil, preferredStyle: .actionSheet)
+        for floor in arrayOfFloors {
+            alert.addAction(UIAlertAction.init(title: floor, style: .default, handler: { (_) in
+                var tmp = floor.components(separatedBy: " ")
+                self.floorID += Int(tmp[1])! - self.floorNumber
+                self.floorNumber = Int(tmp[1])!
+                self.changeFloor()
+            }))
+        }
+        self.present(alert, animated: true, completion: nil)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -274,6 +299,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerD
                 }
                 barButtonCancel.tintColor = bufColor
                 barButtonCancel.isEnabled = true
+                searchController.searchBar.text = ""
                 self.dismiss(animated: true, completion: nil)
                 //                var coordX = Double(item.coordX)
                 //                var coordY = Double(item.coordY)
@@ -313,6 +339,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerD
                 DispatchQueue.main.async {
                     self.imageView.image = self.parserAndBuilder.placeMarker(buildingName: self.buildingName, floorNumber: self.floorID, coordX: item.coordX, coordY: item.coordY, flag: 2)
                 }
+                searchController.searchBar.text = ""
 //                scrollView.zoomScale = 1.9
 //                //                scrollView.zoom(to: CGRect(x: coordX, y: coordY, width: 100, height: 100), animated: true)
 //                
@@ -337,6 +364,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerD
                     self.present(self.searchController, animated: true, completion: nil)
                 }))
                 self.dismiss(animated: true, completion: nil)
+                searchController.searchBar.text = ""
                 self.present(alert, animated: true, completion: nil)
             }
 

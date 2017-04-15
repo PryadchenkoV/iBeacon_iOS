@@ -13,11 +13,12 @@ let kSegueFormFloorToMap = "fromFloorToMap"
 
 var arrayOfFloors = [String]()
 
-class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
 
     @IBOutlet weak var tableViewFloor: UITableView!
     
     var overlay : UIView?
+    @IBOutlet weak var barButtonSearch: UIBarButtonItem!
     
     //let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test")
     let queue = DispatchQueue(label: "com.miem.hse.iBeacon_test")
@@ -31,6 +32,10 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
     var buildingID = -1
     var parserAndBuilder = ParserAndBuilder()
     var arrayOfFloorID = [String]()
+    var searchFlag = false
+    var searchRoom = ""
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     var arrayOfNextFloorImages = [UIImage]()
     
@@ -202,6 +207,10 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
                 destinantionController.minFloor = Int(arrayOfFloorID.first!)!
                 destinantionController.maxFloor = Int(arrayOfFloorID.last!)!
                 destinantionController.floorID = Int(arrayOfFloorID[chosenFloor])!
+                destinantionController.searchFlag = searchFlag
+                searchFlag = false
+                destinantionController.searchRoom = searchRoom
+                searchRoom = ""
                 //destinantionController.arrayOfFloorImages = arrayOfNextFloorImages
                 destinantionController.buildingName = buildingName
             }
@@ -211,6 +220,49 @@ class ChooseFloorViewController: UIViewController, UITableViewDelegate, UITableV
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func barButtonPushed(_ sender: UIBarButtonItem) {
+        if sender == barButtonSearch {
+            searchController.dimsBackgroundDuringPresentation = true
+            searchController.searchBar.placeholder = "Enter the room..."
+            searchController.searchBar.delegate = self
+            self.present(searchController, animated: true, completion: nil)
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchController.dismiss(animated: true, completion: nil)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        var counter = 0
+        searchController.searchBar.resignFirstResponder()
+        for item in beaconArray {
+            counter += 1
+            if item.name == searchBar.text! {
+                
+                chosenTitle = item.floor
+                chosenFloor = arrayOfFloors.index(of: self.chosenTitle)!
+                searchFlag = true
+                searchRoom = item.name
+                self.dismiss(animated: true, completion: nil)
+                performSegue(withIdentifier: kSegueFormFloorToMap, sender: self)
+                searchController.searchBar.text = ""
+                break
+            } else if counter == beaconArray.count{
+                let alert = UIAlertController(title: "Error", message: "Unknown room", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction.init(title: "Ok", style: .default, handler: { (_) in
+                    self.present(self.searchController, animated: true, completion: nil)
+                }))
+                searchController.searchBar.text = ""
+                self.dismiss(animated: true, completion: nil)
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        }
+        
     }
     
 //    func createMassiveOfFloors(minFloor: Int, maxFloor: Int) {

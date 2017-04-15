@@ -466,7 +466,7 @@ class ParserAndBuilder: NSObject {
         let scale = imageToTransform.scale
         UIGraphicsBeginImageContextWithOptions(imageToTransform.size, false, scale)
         imageToTransform.draw(in: CGRect(origin: CGPoint.zero, size: imageToTransform.size))
-        imageToPlace?.draw(in: CGRect(origin: CGPoint.init(x: (coordX * screenMult  - (55 * screenMult)), y: (coordY * screenMult) - (55 * screenMult)), size: (imageToPlace?.size)!))
+        imageToPlace?.draw(in: CGRect(origin: CGPoint.init(x: (coordX * screenMult  - (75 * screenMult)), y: (coordY * screenMult) - (80 * screenMult)), size: (imageToPlace?.size)! ))
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
