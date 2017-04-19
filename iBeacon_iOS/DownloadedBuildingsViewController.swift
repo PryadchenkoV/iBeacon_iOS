@@ -70,8 +70,17 @@ class DownloadedBuildingsViewController: UIViewController, UITableViewDataSource
             self.performSegue(withIdentifier: kSegueToMoreInfo, sender: self)
         }
         infoAboutBuilding.backgroundColor = .lightGray
+        let deleteBuilding = UITableViewRowAction(style: .default, title: "Delete") { _, _ in
+            self.parserAndBuilder.removeBuildingFromDevice(buildingNumber: self.numberOfRowSelected)
+            self.bufDict = self.parserAndBuilder.getListForDownloadedBuildings()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1 , execute: {
+                self.tableDownloadedBuildings.reloadData()
+            })
+        }
+        deleteBuilding.backgroundColor = UIColor.red
         
-        return [infoAboutBuilding]
+        
+        return [infoAboutBuilding,deleteBuilding]
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

@@ -39,6 +39,7 @@
 		E2BC82331E394011005D553E /* MoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BC82321E394011005D553E /* MoreInfoViewController.swift */; };
 		E2CE8EDA1E1D68E6008AFF88 /* level11.png in Resources */ = {isa = PBXBuildFile; fileRef = E2CE8ED91E1D68E6008AFF88 /* level11.png */; };
 		E2EB80371DDE0AD100983148 /* level12.png in Resources */ = {isa = PBXBuildFile; fileRef = E2EB80361DDE0AD100983148 /* level12.png */; };
+		E2F4F1B51EA63E4A009B697E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F4F1B41EA63E4A009B697E /* LoginViewController.swift */; };
 		E2FFE47A1E37575900A19987 /* SSDfilled-100.png in Resources */ = {isa = PBXBuildFile; fileRef = E2FFE4791E37575900A19987 /* SSDfilled-100.png */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		E2BC82321E394011005D553E /* MoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoViewController.swift; sourceTree = "<group>"; };
 		E2CE8ED91E1D68E6008AFF88 /* level11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level11.png; path = ../../../Downloads/maps/uploadedImages/img/strogino/level11.png; sourceTree = "<group>"; };
 		E2EB80361DDE0AD100983148 /* level12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level12.png; path = ../../../Downloads/maps/uploadedImages/img/strogino/level12.png; sourceTree = "<group>"; };
+		E2F4F1B41EA63E4A009B697E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E2FFE4791E37575900A19987 /* SSDfilled-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SSDfilled-100.png"; path = "../../SSDfilled-100.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +124,7 @@
 				E2AA74661DE2114B00D9E80C /* Buttons */,
 				E23513AB1DCE26F80002A25B /* tiles */,
 				E23513991DCE25450002A25B /* AppDelegate.swift */,
+				E2F4F1B41EA63E4A009B697E /* LoginViewController.swift */,
 				E22496DB1E325B3A0014E1B3 /* ChooseBuildingViewController.swift */,
 				E22496DF1E3571940014E1B3 /* DownloadedBuildingsViewController.swift */,
 				E2314C2C1E4E0E06007F8869 /* BeaconInfo.swift */,
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2F4F1B51EA63E4A009B697E /* LoginViewController.swift in Sources */,
 				E25E10CB1DE5F5FC00228C5F /* ParserAndBuilder.swift in Sources */,
 				E25E10C91DE5E88300228C5F /* FloorTableViewCell.swift in Sources */,
 				E25E10C71DE5E66500228C5F /* ChooseFloorViewController.swift in Sources */,

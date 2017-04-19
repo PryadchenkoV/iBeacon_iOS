@@ -44,7 +44,7 @@ class ParserAndBuilder: NSObject {
                         print(jsonDict)
                         for i in 0..<(jsonDict).count {
                             let dictionaryOfBuilding = jsonDict[i] as! NSDictionary
-                            print(dictionaryOfBuilding["buildingId"])
+                            //print(dictionaryOfBuilding["buildingId"])
                             if let buildingID = dictionaryOfBuilding["buildingId"], let buildingName = dictionaryOfBuilding["buildingName"] {
                                 dictWithDate[String(describing: buildingID)] = String(describing: buildingName)
                             }
@@ -67,9 +67,10 @@ class ParserAndBuilder: NSObject {
         var dictWithDate = [String:String]()
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let filePath = documentsURL.appendingPathComponent("AllBuildings").path
-        let content = NSData(contentsOfFile: filePath) as! Data
+        let content = NSData(contentsOfFile: filePath)! as Data
         do {
             let jsonDict = try JSONSerialization.jsonObject(with: content, options: .allowFragments) as! NSArray
+            print(jsonDict)
             for i in 0..<(jsonDict).count {
                 let dictionaryOfBuilding = jsonDict[i] as! NSDictionary
                 if let buildingID = dictionaryOfBuilding["buildingId"], let buildingName = dictionaryOfBuilding["buildingName"] {
@@ -86,7 +87,31 @@ class ParserAndBuilder: NSObject {
         return dictWithDate
     }
     
-    
+    func removeBuildingFromDevice(buildingNumber: Int){
+        //var dictWithDate = [String:String]()
+        let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let documentsDirectoryPath = NSURL(string: documentsDirectoryPathString)!
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let jsonFilePath = documentsDirectoryPath.appendingPathComponent("AllBuildings")
+        let filePath = documentsURL.appendingPathComponent("AllBuildings").path
+        let content = NSData(contentsOfFile: filePath)! as Data
+        do {
+            let jsonDict = try JSONSerialization.jsonObject(with: content, options: .allowFragments) as! NSArray
+            let jsonMutableDict = jsonDict.mutableCopy() as! NSMutableArray
+            jsonMutableDict.removeObject(at: buildingNumber)
+            print(jsonMutableDict)
+            try FileManager.default.removeItem(at: documentsURL.appendingPathComponent("AllBuildings"))
+            let _ = FileManager.default.createFile(atPath: documentsURL.appendingPathComponent("AllBuildings").path, contents: nil, attributes: nil)
+            let json =  try JSONSerialization.data(withJSONObject: jsonMutableDict, options: .prettyPrinted)
+            let file = try FileHandle(forWritingTo: jsonFilePath!)
+            file.write(json)
+        }
+        catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
+
+    }
     
     func downloadJSON(url: String,jsonName: String){
         let url = URL(string: url)
@@ -119,7 +144,7 @@ class ParserAndBuilder: NSObject {
                                 print(jsonDict)
                                 let json =  try JSONSerialization.data(withJSONObject: jsonDict, options: .prettyPrinted)
                                 //print(jsonDict)
-                                let created = fileManager.createFile(atPath: (jsonFilePath?.absoluteString)!, contents: nil, attributes: nil)
+                                _ = fileManager.createFile(atPath: (jsonFilePath?.absoluteString)!, contents: nil, attributes: nil)
                                 let file = try FileHandle(forWritingTo: jsonFilePath!)
                                 file.write(json)
                                 print("JSON data was written to the file successfully!")
@@ -157,7 +182,7 @@ class ParserAndBuilder: NSObject {
                     if let content = data {
                         
                         if !fileManager.fileExists(atPath: (jsonFilePath?.absoluteString)!) {
-                            let created = fileManager.createFile(atPath: (jsonFilePath?.absoluteString)!, contents: nil, attributes: nil)
+                            _ = fileManager.createFile(atPath: (jsonFilePath?.absoluteString)!, contents: nil, attributes: nil)
                         }
                         do {
                             
@@ -221,7 +246,7 @@ class ParserAndBuilder: NSObject {
         var stringAdressOfBuilding = ""
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let filePath = documentsURL.appendingPathComponent(nameOfBuilding).path
-        let dataNew = NSData(contentsOfFile: filePath) as! Data
+        let dataNew = NSData(contentsOfFile: filePath)! as Data
         do {
             let jsonDictNew = try JSONSerialization.jsonObject(with: dataNew, options: .mutableContainers) as AnyObject
             var bufString = ""
@@ -245,7 +270,7 @@ class ParserAndBuilder: NSObject {
         var arrayOfBuildingID = [String]()
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let filePath = documentsURL.appendingPathComponent(nameOfBuilding).path
-        let dataNew = NSData(contentsOfFile: filePath) as! Data
+        let dataNew = NSData(contentsOfFile: filePath)! as Data
         do {
             let jsonDictNew = try JSONSerialization.jsonObject(with: dataNew, options: .mutableContainers) as AnyObject
             let mapIDArray = jsonDictNew["maps"] as? NSArray
@@ -293,7 +318,7 @@ class ParserAndBuilder: NSObject {
         var nameForMap = ""
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let filePath = documentsURL.appendingPathComponent(buildingName + buildingID).path
-        let dataNew = NSData(contentsOfFile: filePath) as! Data
+        let dataNew = NSData(contentsOfFile: filePath)! as Data
         do {
             let parsedData = try JSONSerialization.jsonObject(with: dataNew, options: .mutableContainers) as AnyObject
             let dictionaryOfParcedData = parsedData as! NSDictionary
@@ -333,7 +358,7 @@ class ParserAndBuilder: NSObject {
         var dictionaryCoord = [String:String]()
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let filePath = documentsURL.appendingPathComponent(buildingName + jsonName).path
-        let dataNew = NSData(contentsOfFile: filePath) as! Data
+        let dataNew = NSData(contentsOfFile: filePath)! as Data
         do {
             if let parsedData = try? JSONSerialization.jsonObject(with: dataNew, options: .mutableContainers) as AnyObject {
                 let dictionaryOfParcedData = parsedData as! NSDictionary
@@ -369,7 +394,7 @@ class ParserAndBuilder: NSObject {
     func jsonToBeaconArray(buildingName: String,jsonName: String) {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let filePath = documentsURL.appendingPathComponent(buildingName + jsonName).path
-        let dataNew = NSData(contentsOfFile: filePath) as! Data
+        let dataNew = NSData(contentsOfFile: filePath)! as Data
         do {
             if let parsedData = try? JSONSerialization.jsonObject(with: dataNew, options: .mutableContainers) as AnyObject {
                 let dictionaryOfParcedData = parsedData as! NSDictionary

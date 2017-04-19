@@ -173,12 +173,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="nNG-f9-9bs" kind="relationship" relationship="rootViewController" id="NSZ-V0-5dn"/>
+                        <segue destination="dsL-Lo-W2j" kind="relationship" relationship="rootViewController" id="7DF-ti-GwU"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ixC-Zh-BFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-858" y="136"/>
+            <point key="canvasLocation" x="-1657" y="136"/>
         </scene>
         <!--From Server-->
         <scene sceneID="WE5-UT-NQQ">
@@ -319,8 +319,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ueR-Hd-ofa">
-                                <rect key="frame" x="16" y="141" width="343" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ueR-Hd-ofa">
+                                <rect key="frame" x="16" y="144" width="343" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -331,8 +331,8 @@
                                     <constraint firstAttribute="height" constant="343" id="cRU-1K-z5z"/>
                                 </constraints>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKJ-cy-5Je">
-                                <rect key="frame" x="16" y="103" width="106" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKJ-cy-5Je">
+                                <rect key="frame" x="16" y="103" width="106" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="106" id="POm-PT-2GY"/>
                                 </constraints>
@@ -362,6 +362,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="czt-1y-gUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1935.2" y="922.48875562218893"/>
+        </scene>
+        <!--Enter Login-->
+        <scene sceneID="Aqc-ND-kXN">
+            <objects>
+                <viewController id="dsL-Lo-W2j" customClass="LoginViewController" customModule="iBeacon_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xfF-QJ-Ukc"/>
+                        <viewControllerLayoutGuide type="bottom" id="lVW-3j-red"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d9V-Z3-Mqe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eTA-4D-NTr">
+                                <rect key="frame" x="16" y="222" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ikP-Fe-htf">
+                                <rect key="frame" x="16" y="270" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HmD-Js-R53">
+                                <rect key="frame" x="259" y="318" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="8zU-lt-BG4"/>
+                                </constraints>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="buttonPushed:" destination="dsL-Lo-W2j" eventType="touchUpInside" id="lLH-gF-ORS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSV-K3-X2k">
+                                <rect key="frame" x="16" y="318" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="9nd-rO-eeo"/>
+                                </constraints>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ikP-Fe-htf" firstAttribute="top" secondItem="eTA-4D-NTr" secondAttribute="bottom" constant="18" id="03r-HK-zI6"/>
+                            <constraint firstItem="eTA-4D-NTr" firstAttribute="leading" secondItem="d9V-Z3-Mqe" secondAttribute="leadingMargin" id="8se-p9-LVk"/>
+                            <constraint firstItem="ikP-Fe-htf" firstAttribute="trailing" secondItem="d9V-Z3-Mqe" secondAttribute="trailingMargin" id="L3f-ec-ytM"/>
+                            <constraint firstItem="HmD-Js-R53" firstAttribute="top" secondItem="ikP-Fe-htf" secondAttribute="bottom" constant="18" id="NAk-fK-tDG"/>
+                            <constraint firstItem="XSV-K3-X2k" firstAttribute="leading" secondItem="d9V-Z3-Mqe" secondAttribute="leadingMargin" id="UPg-he-QIa"/>
+                            <constraint firstItem="HmD-Js-R53" firstAttribute="trailing" secondItem="d9V-Z3-Mqe" secondAttribute="trailingMargin" id="Vad-Lh-Uq0"/>
+                            <constraint firstItem="ikP-Fe-htf" firstAttribute="leading" secondItem="d9V-Z3-Mqe" secondAttribute="leadingMargin" id="g0d-ey-nIe"/>
+                            <constraint firstItem="eTA-4D-NTr" firstAttribute="top" secondItem="xfF-QJ-Ukc" secondAttribute="bottom" constant="158" id="kWa-1H-rrf"/>
+                            <constraint firstItem="eTA-4D-NTr" firstAttribute="trailing" secondItem="d9V-Z3-Mqe" secondAttribute="trailingMargin" id="rc0-Oh-znU"/>
+                            <constraint firstItem="XSV-K3-X2k" firstAttribute="top" secondItem="ikP-Fe-htf" secondAttribute="bottom" constant="18" id="siK-5p-ZvF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Enter Login" id="jCE-pE-Nde"/>
+                    <connections>
+                        <outlet property="buttonLogin" destination="HmD-Js-R53" id="9u6-5A-a0t"/>
+                        <outlet property="buttonRegister" destination="XSV-K3-X2k" id="kjx-ew-Oz1"/>
+                        <outlet property="textFieldLogin" destination="eTA-4D-NTr" id="b6N-2T-L5C"/>
+                        <outlet property="textFieldPassword" destination="ikP-Fe-htf" id="JNF-sA-zmT"/>
+                        <segue destination="nNG-f9-9bs" kind="show" identifier="fromLoginToBuildings" id="UPu-Zs-Z1R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3sg-wG-eaB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-796" y="136"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1CN-Kh-bcY">

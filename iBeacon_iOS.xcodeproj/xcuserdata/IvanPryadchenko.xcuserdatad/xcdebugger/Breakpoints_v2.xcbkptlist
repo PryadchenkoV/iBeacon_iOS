@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
             landmarkName = "jsonToStringBuildingName(jsonName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "downloadJSON(url:jsonName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "downloadJSON(url:jsonName:)"
             landmarkType = "7">
             <Locations>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "downloadJSON(url:jsonName:)"
             landmarkType = "7">
             <Locations>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "downloadJSON(url:jsonName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "downloadJSON(url:jsonName:)"
             landmarkType = "7">
             <Locations>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "downloadJSON(url:jsonName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "downloadJSON(url:jsonName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -570,11 +570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
             landmarkName = "getIDOfBuildings(nameOfBuilding:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -618,11 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "downloadJSON(url:jsonName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -698,11 +698,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "createFloorMapForAsync(building:floorNumber:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -794,11 +794,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "downloadJSON(url:jsonName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1018,11 +1018,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "downloadJSONOfFloor(url:buildingName:jsonName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1034,11 +1034,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "downloadJSONOfFloor(url:buildingName:jsonName:)"
             landmarkType = "7">
             <Locations>
@@ -1082,11 +1082,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "downloadJSONOfFloor(url:buildingName:jsonName:)"
             landmarkType = "7">
             <Locations>
@@ -1130,11 +1130,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "downloadJSON(url:jsonName:)"
             landmarkType = "7">
             <Locations>
@@ -1178,11 +1178,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "getIDOfBuildings(nameOfBuilding:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1210,7 +1210,7 @@
                   moduleName = "iBeacon_iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/IvanPryadchenko/Develop/iBeacon_iOS/iBeacon_iOS/ChooseFloorViewController.swift"
-                  timestampString = "513807185.453654"
+                  timestampString = "514213016.643209"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "126"
@@ -1225,7 +1225,7 @@
                   moduleName = "iBeacon_iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/IvanPryadchenko/Develop/iBeacon_iOS/iBeacon_iOS/ChooseFloorViewController.swift"
-                  timestampString = "513807185.457012"
+                  timestampString = "514213016.645512"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "128"
@@ -1274,11 +1274,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/DownloadedBuildingsViewController.swift"
-            timestampString = "507119774.266532"
+            timestampString = "513940901.508343"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1290,11 +1290,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/DownloadedBuildingsViewController.swift"
-            timestampString = "507119037.489679"
+            timestampString = "513940901.508343"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1306,11 +1306,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/DownloadedBuildingsViewController.swift"
-            timestampString = "507119207.562435"
+            timestampString = "513940901.508343"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1322,11 +1322,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/DownloadedBuildingsViewController.swift"
-            timestampString = "507119706.040876"
+            timestampString = "513940901.508343"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1338,11 +1338,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513698065.57406"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "398"
-            endingLineNumber = "398"
+            startingLineNumber = "423"
+            endingLineNumber = "423"
             landmarkName = "jsonToBeaconArray(buildingName:jsonName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1370,11 +1370,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513693617.825134"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "473"
-            endingLineNumber = "473"
+            startingLineNumber = "498"
+            endingLineNumber = "498"
             landmarkName = "placeMarker(buildingName:floorNumber:coordX:coordY:flag:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1418,11 +1418,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513693617.825134"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "458"
-            endingLineNumber = "458"
+            startingLineNumber = "483"
+            endingLineNumber = "483"
             landmarkName = "placeMarker(buildingName:floorNumber:coordX:coordY:flag:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1434,11 +1434,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513693617.825134"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "472"
-            endingLineNumber = "472"
+            startingLineNumber = "497"
+            endingLineNumber = "497"
             landmarkName = "placeMarker(buildingName:floorNumber:coordX:coordY:flag:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1595,11 +1595,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513695473.040885"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "459"
-            endingLineNumber = "459"
+            startingLineNumber = "484"
+            endingLineNumber = "484"
             landmarkName = "placeMarker(buildingName:floorNumber:coordX:coordY:flag:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1611,11 +1611,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBeacon_iOS/ParserAndBuilder.swift"
-            timestampString = "513695743.911309"
+            timestampString = "513941565.585855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "466"
-            endingLineNumber = "466"
+            startingLineNumber = "491"
+            endingLineNumber = "491"
             landmarkName = "placeMarker(buildingName:floorNumber:coordX:coordY:flag:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1675,7 +1675,7 @@
                   moduleName = "iBeacon_iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/IvanPryadchenko/Develop/iBeacon_iOS/iBeacon_iOS/ViewController.swift"
-                  timestampString = "513807185.499787"
+                  timestampString = "514213016.672181"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "253"
@@ -1690,7 +1690,7 @@
                   moduleName = "iBeacon_iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/IvanPryadchenko/Develop/iBeacon_iOS/iBeacon_iOS/ViewController.swift"
-                  timestampString = "513807185.501937"
+                  timestampString = "514213016.673552"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "254"
@@ -1729,6 +1729,54 @@
             startingLineNumber = "119"
             endingLineNumber = "119"
             landmarkName = "tableView(_:editActionsForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iBeacon_iOS/DownloadedBuildingsViewController.swift"
+            timestampString = "513940628.591526"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "tableView(_:editActionsForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iBeacon_iOS/ParserAndBuilder.swift"
+            timestampString = "513940901.508343"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "removeBuildingFromDevice(buildingNumber:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iBeacon_iOS/ParserAndBuilder.swift"
+            timestampString = "513940901.508343"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "getListForDownloadedBuildings()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
